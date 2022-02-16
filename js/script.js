@@ -2,8 +2,6 @@
 // Variaveis Globais
 let tela1 = document.querySelector('.tela-1');
 
-
-
 // function inicializada toda vez que clicar em Criar Quizz
 function criarQuizz() {
     tela1.classList.add("escondido");
