@@ -25,13 +25,13 @@
             <button onclick="criarQuizz()">Criar Quizz</button>
         </section>
 
-        <!-- Seus Quizzes, caso tenha -->
-        <section class="seus-Quizzes">
-            <div>
+        <!-- Seus Quizzes, caso tenha. -->
+        <section class="seus-Quizzes escondido">
+            <div class="seus-Quizzes-titulo">
                 <h1>Seus Quizzes</h1>
-                <ion-icon name="add-circle-sharp"></ion-icon>
+                <ion-icon name="add-circle-sharp" onClick="criarQuizz()"></ion-icon>
             </div>
-            <div>
+            <div class=" seus-Quizzes-imagens">
                 <div onclick="">
                     <div class="gradiente"></div>
                     <img src="img/simpsons.jpeg" alt="Simpsons">
@@ -44,7 +44,6 @@
                 </div>
             </div>
         </section>
-
         <!-- Todos os Quizzes -->
         <h1>Todos os Quizzes</h1>
         <section class="todos-quizzes">
