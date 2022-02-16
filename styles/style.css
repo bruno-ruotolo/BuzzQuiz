@@ -88,7 +88,6 @@ h1 {
     flex-wrap: wrap;
 }
 
-/* O problema era que as imagens estavam nessa div, e esta div estava se ajustando as imagens (dando tipo um fit content) */
 .seus-Quizzes-imagens {
     width: 100%;
 }
@@ -111,7 +110,7 @@ h1 {
     border-radius: 5px;
 }
 
-.todos-quizzes img, .seus-Quizzes img {
+.todos-quizzes img, .seus-Quizzes img, .tela-3-4 img {
     width: 340px;
     height: 181px;
     border-radius: 5px;
@@ -119,7 +118,7 @@ h1 {
     top: 0;
 }
 
-.todos-quizzes p, .seus-Quizzes p {
+.todos-quizzes p, .seus-Quizzes p, .tela-3-4 p {
     font-size: 19px;
     position: absolute;
     bottom: 10px;
@@ -131,7 +130,6 @@ h1 {
 
 
 
-/* ARRUMAR O MARGIN BOTTOM DOS INPUTS */
 /* tela-3 */
 .tela-3-criacao-quizz {
     /* background-color: red; */
@@ -262,7 +260,7 @@ h4 {
     font-family: 'Roboto', sans-serif;
 }
 
-/* .tela-3-2-criacao-quizz {
+.tela-3-4 {
     position: absolute;
     margin-top: 69px;
     display: flex;
@@ -274,18 +272,35 @@ h4 {
     left: 0;
     right: 0;
     margin: 53px auto 0 auto;
+    justify-content: center;
 }
 
-.tela-3-2-criacao-quizz div {
-    background-color: #FFFFFF;
-    display: flex;
-    width: 100%;
+.tela-3-4 div {
+    width: 340px;
+    height: 181px;
+    position: relative;
+    margin: 0;
+    border-radius: 5px;
+    left: 0;
     flex-direction: column;
-    padding: 0px 18px 0 16px;
-    margin-bottom: 14px;
-} */
+}
+
+.tela-3-4 button {
+    background-color: #EC362D;
+    border-radius: 15px;
+    border: none;
+    font-size: 18px;
+    font-weight: 400;
+    color: #FFF5F4;
+    height: 54px;
+    padding: 10px 50px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 324px;
+}
 
 
+/* css escondido */
 .escondido {
     display: none;
 }
