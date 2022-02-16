@@ -173,6 +173,10 @@ h3 {
     margin-bottom: 24px;
 }
 
+.tela-1 {
+    position: relative;
+}
+
 .tela-3-criacao-quizz div {
     background-color: #FFFFFF;
     display: flex;
