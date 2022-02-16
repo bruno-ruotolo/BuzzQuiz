@@ -22,13 +22,13 @@
         <!-- Tela 1 -->
         <!-- NENHUM QUIZZ - Criar QUIZZ -->
         <section class="tela-1">
-            <section class="nenhum-quizz escondido">
+            <section class="nenhum-quizz">
                 <p>Você não criou nenhum quizz ainda :(</p>
                 <button onclick="criarQuizz()">Criar Quizz</button>
             </section>
 
             <!-- Seus Quizzes, caso tenha. Tentando fazer a versão Desktop ficar com margin horizontal certinha, mas to tendo dificuldades-->
-            <section class="seus-quizzes ">
+            <section class="seus-quizzes escondido">
                 <div class="seus-quizzes-titulo">
                     <h1>Seus Quizzes</h1>
                     <ion-icon name="add-circle-sharp" onClick="criarQuizz()"></ion-icon>
@@ -52,7 +52,7 @@
                 </div>
             </section>
             <!-- Todos os Quizzes -->
-            <section class="todos-quizzes escondido">
+            <section class="todos-quizzes">
                 <h1>Todos os Quizzes</h1>
                 <div onclick="">
                     <div class="gradiente"></div>
@@ -100,12 +100,12 @@
             <section class="tela-3-criacao-quizz tela-3-1 escondido">
                 <h2>Comece pelo começo</h2>
                 <div>
-                    <input type="text" placeholder="Título do seu quizz">
-                    <input type="text" placeholder="URL da imagem do seu quizz">
-                    <input type="text" placeholder="Quantidade de perguntas do quizz">
-                    <input type="text" placeholder="Quantidade de níveis do quizz">
+                    <input class="titulo-pergunta" type="text" placeholder="Título do seu quizz">
+                    <input class="url-pergunta" type="text" placeholder="URL da imagem do seu quizz">
+                    <input class="quantidade-pergunta" type="text" placeholder="Quantidade de perguntas do quizz">
+                    <input class="quantidade-niveis-pergunta" type="text" placeholder="Quantidade de níveis do quizz">
                 </div>
-                <button onclick="criarQuizzTela3_2()">Prosseguir pra criar perguntas</button>
+                <button onclick="criarQuizzTela3_1()">Prosseguir pra criar perguntas</button>
             </section>
             <!-- tela 3.2 -->
             <section class="tela-3-criacao-quizz tela-3-2 escondido">
@@ -144,7 +144,7 @@
                     <ion-icon name="create-outline"></ion-icon>
                 </article>
 
-                <button onclick="criarQuizzTela3_3()">Prosseguir pra criar níveis</button>
+                <button onclick="criarQuizzTela3_2()">Prosseguir pra criar níveis</button>
             </section>
 
             <!-- tela 3.3 -->
@@ -167,7 +167,7 @@
                     <h4>Nível 3</h4>
                     <ion-icon name="create-outline"></ion-icon>
                 </article>
-                <button>Finalizar Quizz</button>
+                <button onclick="criarQuizzTela3_3()">Finalizar Quizz</button>
             </section>
 
             <!-- tela 3.4 -->
@@ -179,9 +179,12 @@
                     <p>Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
                 </div>
 
-                <button>Finalizar Quizz</button>
+                <button>Acessar Quizz</button>
+                <span onclick="voltarHome()">Voltar para Home</span>
+
             </section>
         </section>
+
     </main>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
