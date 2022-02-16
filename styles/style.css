@@ -87,6 +87,11 @@ h1 {
     flex-wrap: wrap;
 }
 
+/* O problema era que as imagens estavam nessa div, e esta div estava se ajustando as imagens (dando tipo um fit content) */
+.seus-Quizzes-imagens {
+    width: 100%;
+}
+
 .todos-quizzes div, .seus-Quizzes-imagens div {
     width: 340px;
     height: 181px;
