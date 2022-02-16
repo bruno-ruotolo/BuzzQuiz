@@ -82,7 +82,11 @@ h1 {
     color: #EC362D;
 }
 
-.todos-quizzes, .seus-Quizzes {
+.seus-Quizzes-imagens div {
+    margin: auto 50px;
+}
+
+.todos-quizzes, .seus-Quizzes, .seus-Quizzes-imagens {
     display: flex;
     flex-wrap: wrap;
 }
@@ -187,4 +191,13 @@ input::placeholder {
 
 .escondido {
     display: none;
+}
+
+/* layout desktop */
+
+@media (min-width: 1100px) {
+    main {
+        width: 1051px;
+        margin: auto auto;
+    }
 }
