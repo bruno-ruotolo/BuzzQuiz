@@ -145,5 +145,8 @@ function voltarHome() {
 
 function reiniciarQuizz() {
     const topoDaTela = document.querySelector('.tela-2-container-titulo');
+    const resultadosDoQuizz = document.querySelector('.tela-2-resultados-e-fim-do-quizz');
     topoDaTela.scrollIntoView();
+    resultadosDoQuizz.classList.add("escondido");
+    //Falta zerar as respostas q devem retornar pro estado inicial
 }
