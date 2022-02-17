@@ -139,8 +139,8 @@ h1 {
 /* tela-2 */
 .tela-2 {
     background-color: #E5E5E5;
-    width: 100vw;
     margin-left: -18px;
+    width: 100vw;
 }
 
 .tela-2-container-titulo {
@@ -198,6 +198,12 @@ h1 {
     align-items: center;
 }
 
+.tela-2-resultado-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .tela-2-resultados img {
     width: 340px;
     height: 255px;
@@ -205,6 +211,7 @@ h1 {
 
 .tela-2-resultados p {
     margin: 10px 18px;
+    font-size: 17px;
 }
 
 .tela-2-resultados-e-fim-do-quizz button {
@@ -215,7 +222,6 @@ h1 {
     align-items: center;
     margin: 0 auto;
     border: none;
-
 }
 
 .tela-2-resultados-e-fim-do-quizz p {
@@ -418,5 +424,49 @@ h4 {
     main {
         width: 1051px;
         margin: auto auto;
+    }
+
+    .tela-2 {
+        background-color: inherit;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: auto;
+    }
+
+    .tela-2-resultados img {
+        width: 329.91px;
+        height: 175.2px;
+    }
+
+    .tela-2-container-pergunta {
+        width: 759px;
+    }
+
+    .tela-2-resultados {
+        width: 759px;
+    }
+
+    .tela-2-resultado-container {
+        flex-direction: row;
+        margin: 0 18px;
+        text-align: left;
+        margin-bottom: 22px;
+    }
+
+    .tela-2-resultado-container img {
+        width: 364px;
+        height: 273px;
+    }
+
+    .tela-2-resultado-container p {
+        text-align: left;
+    }
+
+    .tela-2-container-pergunta-titulo {
+        width: 95%;
+        margin: 18px 18px;
+        padding: 5px;
     }
 }
