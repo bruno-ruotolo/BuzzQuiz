@@ -199,21 +199,24 @@ function mostrarQuizTela2(idQuizz) {
 
 function imprimeQuestoes(questoes) {
     let telaPerguntas = document.querySelector('.tela-2-perguntas');
-    telaPerguntas.innerHTML += `
+    let questaoTexto = "";
+    questaoTexto += `
     <div class="tela-2-container-pergunta">
         <div class="tela-2-container-pergunta-titulo" style="background-color: ${questoes.color};">
             <h2>${questoes.title}</h2>
         </div>
         <div class="tela-2-container-pergunta-respostas">`;
     questoes.answers.forEach((resposta) => {
-        telaPerguntas.innerHTML += `
+        questaoTexto += `
         <div class = "${resposta.isCorrectAnswer}">
             <img src="${resposta.image}">
             <p>${resposta.text}</p>
         </div>
         `;
     });
-    telaPerguntas.innerHTML += "</div></div>";
+    questaoTexto += "</div></div>";
+    console.log(questaoTexto);
+    telaPerguntas.innerHTML += questaoTexto;
 }
 
 
