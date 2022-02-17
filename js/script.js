@@ -87,6 +87,7 @@ function criarQuizzTela3_2_Validacoes() {
     const urlImagemRespostaCorreta = document.querySelector('.url-imagem-resposta-correta');
     const textoRespostaIncorreta = document.querySelector(".texto-resposta-incorreta-1");
 
+    //falta colocar o .lowcase
     const arrayValidacaoCor = ["a", "b", "c", "d", "e", "f", 1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 
     const validacoesUrlRespostaCorreta = urlImagemRespostaCorreta.value.includes('jpg') || urlImagemRespostaCorreta.value.includes('png') || urlImagemRespostaCorreta.value.includes('jpeg');
