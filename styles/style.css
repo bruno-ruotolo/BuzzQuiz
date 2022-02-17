@@ -138,12 +138,34 @@ h1 {
 
 /* tela-2 */
 .tela-2 {
+    margin-top: 69px;
     background-color: #E5E5E5;
     margin-left: -18px;
     width: 100vw;
 }
 
 .tela-2-container-titulo {
+    height: 142px;
+    position: relative;
+    margin-bottom: 24px;
+    margin-top: 68px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tela-2-container-titulo h2 {
+    top: 20%;
+    left: 27vw;
+    right: 27vw;
+    text-align: center;
+    color: #FFFFFF;
+    position: absolute;
+    font-size: 19px;
+}
+
+.tela-2-container-titulo img {
+    width: 100vw;
     height: 142px;
 }
 
@@ -462,6 +484,17 @@ h4 {
 
     .tela-2-resultado-container p {
         text-align: left;
+    }
+
+    .tela-2-container-titulo {
+        margin-top: auto;
+    }
+
+    .tela-2-container-titulo h2 {
+        top: 10;
+        right: 30%;
+        left: 30%;
+        font-size: 39px;
     }
 
     .tela-2-container-pergunta-titulo {
