@@ -156,7 +156,6 @@ function reiniciarQuizz() {
 function listagemQuizzes() {
     const promise = axios.get('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes');
     promise.then((quizzes) => {
-        console.log(quizzes);
         quizzes.data.forEach(mostrarQuizzesTela1);
     }
     );
@@ -181,6 +180,8 @@ function mostrarQuizzesTela1(quizz) {
 function mostrarQuizTela2(idQuizz) {
     tela1.classList.add("escondido");
     tela2.classList.remove("escondido");
+    let telaPerguntas = document.querySelector('.tela-2-perguntas');
+    telaPerguntas.innerHTML = "";
     let tela2Titulo = document.querySelector('.tela-2-container-titulo');
     const promise = axios.get('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/' + idQuizz);
     promise.then((quizz) => {
@@ -215,7 +216,6 @@ function imprimeQuestoes(questoes) {
         `;
     });
     questaoTexto += "</div></div>";
-    console.log(questaoTexto);
     telaPerguntas.innerHTML += questaoTexto;
 }
 
