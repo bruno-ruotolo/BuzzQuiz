@@ -1,6 +1,10 @@
 //TESTANDO PUSH
 // Variaveis Globais
-let tela1 = document.querySelector('.tela-1');
+const tela1 = document.querySelector('.tela-1');
+const tela2 = document.querySelector('.tela-2');
+const tela3 = document.querySelector('.tela-3');
+
+
 
 // function inicializada toda vez que clicar em Criar Quizz
 function criarQuizz() {
@@ -136,8 +140,6 @@ function criarQuizzTela3_3() {
 }
 
 function voltarHome() {
-    const tela3 = document.querySelector('.tela-3');
-    const tela2 = document.querySelector('.tela-2');
     tela3.classList.add("escondido");
     tela2.classList.add("escondido");
     tela1.classList.remove("escondido");
@@ -149,4 +151,47 @@ function reiniciarQuizz() {
     topoDaTela.scrollIntoView();
     resultadosDoQuizz.classList.add("escondido");
     //Falta zerar as respostas q devem retornar pro estado inicial
+}
+
+function listagemQuizzes() {
+    const promise = axios.get('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes');
+    promise.then((quizzes) => {
+        console.log(quizzes);
+        quizzes.data.forEach(mostrarQuizzesTela1);
+    }
+    );
+    promise.catch((erro) => {
+        console.error(erro.response.status);
+    });
+}
+
+function mostrarQuizzesTela1(quizz) {
+    let seusQuizzes = document.querySelector('.seus-quizzes');
+    let todosQuizzes = document.querySelector('.todos-quizzes');
+    // if e else pra definir se é quizzes do usuário ou não, mas por enquanto vou listar todos.
+    todosQuizzes.innerHTML += `
+    <div onclick="mostrarQuizTela2(${quizz.id})">
+        <div class="gradiente"></div>
+        <img src="${quizz.image}">
+        <p>${quizz.title}</p>
+    </div>
+    `;
+}
+
+function mostrarQuizTela2(idQuizz) {
+    tela1.classList.add("escondido");
+    tela2.classList.remove("escondido");
+    let tela2Titulo = documento.querySelector('tela-2-container-titulo');
+    const promise = axios.get('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/' + idQuizz);
+    promise.then((quizz) => {
+        tela2Titulo.innerHTML = `
+            <div></div>
+            <!-- colocar gradient -->
+            <img src="${quizz.data.image}" alt="">
+            <h2>${quizz.data.title}</h2>`
+    }
+    );
+    promise.catch((erro) => {
+        console.error(erro.response.status);
+    });
 }
