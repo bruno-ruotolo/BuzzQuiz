@@ -185,6 +185,12 @@ h1 {
     margin-bottom: 12px;
 }
 
+.tela-2-resultados-e-fim-do-quizz {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .tela-2-resultados {
     display: flex;
     flex-direction: column;
@@ -196,6 +202,28 @@ h1 {
     width: 340px;
     height: 255px;
 }
+
+.tela-2-resultados p {
+    margin: 10px 18px;
+}
+
+.tela-2-resultados-e-fim-do-quizz button {
+    width: 220.32px;
+    height: 44px;
+    background: #EC362D;
+    border-radius: 15px;
+    align-items: center;
+    margin: 0 auto;
+    border: none;
+
+}
+
+.tela-2-resultados-e-fim-do-quizz p {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
 
 /* tela-3 */
 .tela-3-criacao-quizz {
