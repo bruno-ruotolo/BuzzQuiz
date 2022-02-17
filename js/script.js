@@ -181,17 +181,41 @@ function mostrarQuizzesTela1(quizz) {
 function mostrarQuizTela2(idQuizz) {
     tela1.classList.add("escondido");
     tela2.classList.remove("escondido");
-    let tela2Titulo = documento.querySelector('tela-2-container-titulo');
+    let tela2Titulo = document.querySelector('.tela-2-container-titulo');
     const promise = axios.get('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/' + idQuizz);
     promise.then((quizz) => {
         tela2Titulo.innerHTML = `
             <div></div>
             <!-- colocar gradient -->
             <img src="${quizz.data.image}" alt="">
-            <h2>${quizz.data.title}</h2>`
+            <h2>${quizz.data.title}</h2>`;
+        quizz.data.questions.forEach(imprimeQuestoes);
     }
     );
     promise.catch((erro) => {
         console.error(erro.response.status);
     });
 }
+
+function imprimeQuestoes(questoes) {
+    let telaPerguntas = document.querySelector('.tela-2-perguntas');
+    telaPerguntas.innerHTML += `
+    <div class="tela-2-container-pergunta">
+        <div class="tela-2-container-pergunta-titulo" style="background-color: ${questoes.color};">
+            <h2>${questoes.title}</h2>
+        </div>
+        <div class="tela-2-container-pergunta-respostas">`;
+    questoes.answers.forEach((resposta) => {
+        telaPerguntas.innerHTML += `
+        <div class = "${resposta.isCorrectAnswer}">
+            <img src="${resposta.image}">
+            <p>${resposta.text}</p>
+        </div>
+        `;
+    });
+    telaPerguntas.innerHTML += "</div></div>";
+}
+
+
+// Funçoes para listar os Quizzes
+listagemQuizzes();
