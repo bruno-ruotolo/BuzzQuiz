@@ -10,6 +10,7 @@ const tela3 = document.querySelector('.tela-3');
 function criarQuizz() {
     tela1.classList.add("escondido");
     const tela3_1 = document.querySelector('.tela-3-1');
+    tela3.classList.remove("escondido");
     tela3_1.classList.remove("escondido");
 }
 
