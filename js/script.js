@@ -10,7 +10,10 @@ function criarQuizz() {
 }
 
 function criarQuizzTela3_1() {
-    if (criarQuizzTela3_1_Validacoes() === 0) {
+    if (criarQuizzTela3_1_Validacoes() === 1) {
+        alert("Por favor, preencha os dados corretamente antes de prosseguir");
+    }
+    else if (criarQuizzTela3_1_Validacoes() === 0) {
         avacarTela3_2();
     }
 }
@@ -36,16 +39,16 @@ function criarQuizzTela3_1_Validacoes() {
 
     inputVazio.forEach((inputVazio) => {
         if (inputVazio.value === "") {
-            erroContador++;
+            erroContador = 1;
         } else {
             if (tituloPerguntaValue.length < 20 || tituloPerguntaValue.length > 65) {
-                erroContador++;
+                erroContador = 1;
             } else if (!validacoesParaUrl) {
-                erroContador++;
+                erroContador = 1;
             } else if (quantidadePerguntaValue < 3) {
-                erroContador++;
+                erroContador = 1;
             } else if (quantidadeNiveisPerguntaValue < 2 || typeof quantidadeNiveisPerguntaValue !== 'number') {
-                erroContador++;
+                erroContador = 1;
             } else {
                 (erroContador = 0)
             };
