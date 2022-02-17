@@ -137,6 +137,13 @@ function criarQuizzTela3_3() {
 
 function voltarHome() {
     const tela3 = document.querySelector('.tela-3');
+    const tela2 = document.querySelector('.tela-2');
     tela3.classList.add("escondido");
-    tela1.classList.remove("escondido")
+    tela2.classList.add("escondido");
+    tela1.classList.remove("escondido");
+}
+
+function reiniciarQuizz() {
+    const topoDaTela = document.querySelector('.tela-2-container-titulo');
+    topoDaTela.scrollIntoView();
 }
