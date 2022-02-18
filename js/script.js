@@ -265,9 +265,9 @@ function atualizaEVerificaLocalStorage() {
     if (dadosLocalStorage == null) {
     } else {
         dadosLocalStorage = JSON.parse(dadosLocalStorage);
-        if (arrayIDS != dadosLocalStorage) {
+        if (!compareArrays(arrayIDS, dadosLocalStorage)) {
             arrayIDS = dadosLocalStorage;
-            // listagemQuizzes();
+            listagemQuizzes();
         }
     }
 }
@@ -282,6 +282,9 @@ function addIDLocalStorage(id) {
     atualizaEVerificaLocalStorage();
 }
 
+function compareArrays(a1, a2) {
+    return a1.length === a2.length && a1.every((value, index) => value === a2[index]);
+}
 
 // Funçoes para listar os Quizzes
 listagemQuizzes();
