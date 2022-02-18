@@ -3,7 +3,7 @@
 const tela1 = document.querySelector('.tela-1');
 const tela2 = document.querySelector('.tela-2');
 const tela3 = document.querySelector('.tela-3');
-let arrayIDS = null;
+let arrayIDS = [];
 
 
 
@@ -156,9 +156,17 @@ function reiniciarQuizz() {
     //Falta zerar as respostas q devem retornar pro estado inicial
 }
 
+
+//function addIDLocalStorage(id)  --> Quando for der o POST e retornar um ID. Utilizar essa função
+// para jogar o ID no LocalStorage.
+
+// Listagem dos Quizzes
 function listagemQuizzes() {
     const promise = axios.get('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes');
     promise.then((quizzes) => {
+        document.querySelector('.todos-quizzes').innerHTML = "<h1>Todos os Quizzes</h1>";
+        document.querySelector('.seus-quizzes-imagens').innerHTML = "";
+        atualizaEVerificaLocalStorage();
         quizzes.data.forEach(mostrarQuizzesTela1);
     }
     );
@@ -170,14 +178,42 @@ function listagemQuizzes() {
 function mostrarQuizzesTela1(quizz) {
     let seusQuizzes = document.querySelector('.seus-quizzes');
     let todosQuizzes = document.querySelector('.todos-quizzes');
-    // if e else pra definir se é quizzes do usuário ou não, mas por enquanto vou listar todos.
-    todosQuizzes.innerHTML += `
+    let nenhumQuizz = document.querySelector('.nenhum-quizz');
+    if (arrayIDS == null || arrayIDS.length == 0) {
+        nenhumQuizz.classList.remove('escondido');
+        seusQuizzes.classList.add('escondido');
+        todosQuizzes.classList.remove('escondido');
+        todosQuizzes.innerHTML += `
     <div onclick="mostrarQuizTela2(${quizz.id})">
         <div class="gradiente"></div>
         <img src="${quizz.image}">
         <p>${quizz.title}</p>
     </div>
     `;
+    } else {
+        seusQuizzes.classList.remove('escondido');
+        nenhumQuizz.classList.add('escondido');
+        let seusQuizzesImagens = document.querySelector('.seus-quizzes-imagens');
+        if (arrayIDS.includes(quizz.id)) {
+            seusQuizzesImagens.innerHTML += `
+    <div onclick="mostrarQuizTela2(${quizz.id})">
+        <div class="gradiente"></div>
+        <img src="${quizz.image}">
+        <p>${quizz.title}</p>
+    </div>
+    `;
+        } else {
+            todosQuizzes.innerHTML += `
+    <div onclick="mostrarQuizTela2(${quizz.id})">
+        <div class="gradiente"></div>
+        <img src="${quizz.image}">
+        <p>${quizz.title}</p>
+    </div>
+    `;
+        }
+    }
+
+
 }
 
 function mostrarQuizTela2(idQuizz) {
@@ -225,20 +261,26 @@ function imprimeQuestoes(questoes) {
 // Function que trabalhara com o Local Storage
 
 function atualizaEVerificaLocalStorage() {
-    let dadosLocalStorage = localStorage.getItem("ids")
+    let dadosLocalStorage = localStorage.getItem("ids");
     if (dadosLocalStorage == null) {
-        let dadosSerializados = JSON.stringify(arrayIDS);
-        localStorage.setItem("ids", dadosSerializados);
     } else {
-        let dadosLocalStorage = JSON.parse(dadosLocalStorage);
-        if (dadosLocalStorage != arrayIDS) {
-
+        dadosLocalStorage = JSON.parse(dadosLocalStorage);
+        if (arrayIDS != dadosLocalStorage) {
+            arrayIDS = dadosLocalStorage;
+            // listagemQuizzes();
         }
     }
-    // arrayIDS
-
 }
 
+function addIDLocalStorage(id) {
+    if (arrayIDS == null) {
+        arrayIDS = [];
+    }
+    arrayIDS.push(id);
+    let dadosSerializados = JSON.stringify(arrayIDS);
+    localStorage.setItem("ids", dadosSerializados);
+    atualizaEVerificaLocalStorage();
+}
 
 
 // Funçoes para listar os Quizzes
