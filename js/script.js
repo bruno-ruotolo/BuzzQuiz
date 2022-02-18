@@ -262,8 +262,7 @@ function imprimeQuestoes(questoes) {
 
 function atualizaEVerificaLocalStorage() {
     let dadosLocalStorage = localStorage.getItem("ids");
-    if (dadosLocalStorage == null) {
-    } else {
+    if (dadosLocalStorage != null) {
         dadosLocalStorage = JSON.parse(dadosLocalStorage);
         if (!compareArrays(arrayIDS, dadosLocalStorage)) {
             arrayIDS = dadosLocalStorage;
@@ -279,7 +278,7 @@ function addIDLocalStorage(id) {
     arrayIDS.push(id);
     let dadosSerializados = JSON.stringify(arrayIDS);
     localStorage.setItem("ids", dadosSerializados);
-    atualizaEVerificaLocalStorage();
+    listagemQuizzes();
 }
 
 function compareArrays(a1, a2) {
