@@ -3,6 +3,7 @@
 const tela1 = document.querySelector('.tela-1');
 const tela2 = document.querySelector('.tela-2');
 const tela3 = document.querySelector('.tela-3');
+let arrayIDS = null;
 
 
 
@@ -220,6 +221,24 @@ function imprimeQuestoes(questoes) {
     questaoTexto += "</div></div>";
     telaPerguntas.innerHTML += questaoTexto;
 }
+
+// Function que trabalhara com o Local Storage
+
+function atualizaEVerificaLocalStorage() {
+    let dadosLocalStorage = localStorage.getItem("ids")
+    if (dadosLocalStorage == null) {
+        let dadosSerializados = JSON.stringify(arrayIDS);
+        localStorage.setItem("ids", dadosSerializados);
+    } else {
+        let dadosLocalStorage = JSON.parse(dadosLocalStorage);
+        if (dadosLocalStorage != arrayIDS) {
+
+        }
+    }
+    // arrayIDS
+
+}
+
 
 
 // Funçoes para listar os Quizzes
