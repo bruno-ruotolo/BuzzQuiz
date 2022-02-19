@@ -99,16 +99,15 @@ function criarQuizzTela3_2_Validacoes() {
     textoPergunta.forEach((textoPergunta) => {
         if (textoPergunta.value.length < 20 || textoPergunta.value === "") {
             erroContador = 1;
-            console.log("Teste textoPergunta");
         }
     });
 
     corFundoPergunta.forEach((corFundoPergunta) => {
         let corContador = 0;
+        const lowCaseColor = corFundoPergunta.value.toLowerCase();
         for (let i = 0; i < arrayValidacaoCor.length; i++) {
-            if (!corFundoPergunta.value.includes(arrayValidacaoCor[i])) {
+            if (!lowCaseColor.includes(arrayValidacaoCor[i])) {
                 corContador++;
-                console.log(corContador);
                 if (corContador > 10) {
                     erroContador = 1;
                 }
@@ -116,7 +115,6 @@ function criarQuizzTela3_2_Validacoes() {
         }
         if (corFundoPergunta.value.length !== 7 || corFundoPergunta.value === "" || corFundoPergunta.value[0] !== "#") {
             erroContador = 1;
-            console.log("Teste corFundoPergunta");
         }
     });
 
