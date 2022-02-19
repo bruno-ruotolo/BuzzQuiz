@@ -20,7 +20,7 @@
     </header>
     <main>
         <!-- Tela 1 -->
-        <section class="tela-1">
+        <section class="tela-1 escondido">
 
             <!-- NENHUM QUIZZ - Criar QUIZZ -->
             <section class="nenhum-quizz">
@@ -165,7 +165,7 @@
 
 
         <!-- tela 3 -->
-        <section class="tela-3 escondido">
+        <section class="tela-3 ">
             <!-- tela 3.1 -->
             <section class="tela-3-criacao-quizz tela-3-1 escondido">
                 <h2>Comece pelo começo</h2>
@@ -218,19 +218,20 @@
             </section>
 
             <!-- tela 3.3 -->
-            <section class="tela-3-criacao-quizz tela-3-3 escondido">
+            <section class="tela-3-criacao-quizz tela-3-3">
                 <h2>Agora, decida os níveis!</h2>
                 <div>
                     <h3>Nível 1</h3>
-                    <input type="text" placeholder="Título do nível">
-                    <input type="text" placeholder="% de acerto mínima">
-                    <input type="text" placeholder="URL da imagem do nível">
-                    <textarea name="descrica-nivel" cols="10" rows="10" placeholder="Descrição do nível"></textarea>
+                    <input type="text" class="titulo-nivel" placeholder="Título do nível">
+                    <input type="text" class="porcentagem-minima" placeholder="% de acerto mínima">
+                    <input type="text" class="imagem-nivel" placeholder="URL da imagem do nível">
+                    <textarea name="descricao-nivel" class="descricao-nivel" cols="10" rows="10"
+                        placeholder="Descrição do nível"></textarea>
                 </div>
 
                 <article class="outras-opcoes">
                     <h4>Nível 2</h4>
-                    <ion-icon name="create-outline"></ion-icon>
+                    <ion-icon onclick="abrirEditarQuizz()" name="create-outline"></ion-icon>
                 </article>
 
                 <article class="outras-opcoes">

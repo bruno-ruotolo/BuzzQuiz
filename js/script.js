@@ -6,6 +6,7 @@ const tela3 = document.querySelector('.tela-3');
 let arrayIDS = [];
 
 
+//MUDAR A FUNÇÃO DE VALIDAÇÃO DE URL SEGUINDO OS ARTIGOS PROPOSTOS PELA VIVI
 
 // function inicializada toda vez que clicar em Criar Quizz
 function criarQuizz() {
@@ -16,11 +17,10 @@ function criarQuizz() {
 }
 
 function criarQuizzTela3_1() {
-    // INVERTI PARA TESTAR A OUTRA TELA
-    if (criarQuizzTela3_1_Validacoes() === 0) {
+    if (criarQuizzTela3_1_Validacoes() === 1) {
         alert("Por favor, preencha os dados corretamente antes de prosseguir");
     }
-    else if (criarQuizzTela3_1_Validacoes() === 1) {
+    else if (criarQuizzTela3_1_Validacoes() === 0) {
         avacarTela3_2();
     }
 }
@@ -136,11 +136,90 @@ function criarQuizzTela3_2_Validacoes() {
 
 
 function criarQuizzTela3_3() {
-    const tela3_3 = document.querySelector('.tela-3-3');
-    tela3_3.classList.add("escondido");
-    const tela3_4 = document.querySelector('.tela-3-4');
-    tela3_4.classList.remove("escondido");
+    if (criarQuizzTela3_3_Validacoes() >= 1) {
+        alert("Por favor, preencha os dados corretamente antes de prosseguir");
+    }
+    else if (criarQuizzTela3_3_Validacoes() === 0) {
+        avacarTela3_4();
+    }
 }
+
+
+function criarQuizzTela3_3_Validacoes() {
+    let erroContador = 0;
+    let nivelContador = 1;
+
+    const tituloNivel = document.querySelectorAll('.titulo-nivel');
+    const porcentagemNivel = document.querySelectorAll('.porcentagem-minima');
+    const imagemNivel = document.querySelectorAll('.imagem-nivel');
+    const descricaoNivel = document.querySelectorAll(".descricao-nivel");
+
+
+
+    tituloNivel.forEach((tituloNivel) => {
+        if (tituloNivel.value.length < 10 || tituloNivel.value === "") {
+            erroContador = 1;
+        }
+    });
+
+    porcentagemNivel.forEach((porcentagemNivel) => {
+        if (porcentagemNivel.value > 100 || porcentagemNivel.value === "" || porcentagemNivel.value < 0) {
+            erroContador = 1;
+        }
+
+        const parseIntPorcentagem = parseInt(porcentagemNivel.value);
+
+        if (parseIntPorcentagem * 1 !== parseIntPorcentagem) {
+            erroContador = 1;
+            console.log("Erro na porcentagem")
+        }
+
+        if (parseInt(porcentagemNivel.value) === 0) {
+            nivelContador = 0;
+            console.log("zerando");
+        }
+    });
+
+    tituloNivel.forEach((tituloNivel) => {
+        if (tituloNivel.value.length < 10 || tituloNivel.value === "") {
+            erroContador = 1;
+        }
+    });
+
+    imagemNivel.forEach((imagemNivel) => {
+        const validacoesUrlRespostaCorreta = imagemNivel.value.includes('jpg') || imagemNivel.value.includes('png') || imagemNivel.value.includes('jpeg');
+        if ((!validacoesUrlRespostaCorreta)) {
+            erroContador = 1;
+            console.log("Teste textoRespostaCorreta");
+        }
+    });
+
+    descricaoNivel.forEach((descricaoNivel) => {
+        if (descricaoNivel.value.length < 30 || descricaoNivel.value === "") {
+            erroContador = 1;
+            console.log("Erro na Descricao");
+        }
+    });
+
+    erroContador += nivelContador;
+    console.log(erroContador);
+
+    return erroContador;
+
+}
+function avacarTela3_4() {
+    const tela3_2 = document.querySelector('.tela-3-3');
+    tela3_2.classList.add("escondido");
+    const tela3_3 = document.querySelector('.tela-3-4');
+    tela3_3.classList.remove("escondido");
+}
+
+function abrirEditarQuizz() {
+
+}
+
+
+
 
 function voltarHome() {
     tela3.classList.add("escondido");
