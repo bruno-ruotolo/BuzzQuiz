@@ -96,8 +96,6 @@ function criarQuizzTela3_2_Validacoes() {
     //falta colocar o .lowcase
     const arrayValidacaoCor = ["a", "b", "c", "d", "e", "f", 1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 
-    const validacoesUrlRespostaCorreta = urlImagemRespostaCorreta.value.includes('jpg') || urlImagemRespostaCorreta.value.includes('png') || urlImagemRespostaCorreta.value.includes('jpeg');
-
     textoPergunta.forEach((textoPergunta) => {
         if (textoPergunta.value.length < 20 || textoPergunta.value === "") {
             erroContador = 1;
@@ -122,9 +120,10 @@ function criarQuizzTela3_2_Validacoes() {
         }
     });
 
-    if (textoRespostaCorreta.value === "" || (!validacoesUrlRespostaCorreta)) {
+    erroContador = (!(testandoURL(urlImagemRespostaCorreta.value)));
+
+    if (textoRespostaCorreta.value === "") {
         erroContador = 1;
-        console.log("Teste textoRespostaCorreta");
     }
 
     if (textoRespostaIncorreta.value === "") {
@@ -187,11 +186,7 @@ function criarQuizzTela3_3_Validacoes() {
     });
 
     imagemNivel.forEach((imagemNivel) => {
-        const validacoesUrlRespostaCorreta = imagemNivel.value.includes('jpg') || imagemNivel.value.includes('png') || imagemNivel.value.includes('jpeg');
-        if ((!validacoesUrlRespostaCorreta)) {
-            erroContador = 1;
-            console.log("Teste textoRespostaCorreta");
-        }
+        erroContador = testandoURL(imagemNivel.value);
     });
 
     descricaoNivel.forEach((descricaoNivel) => {
@@ -207,6 +202,20 @@ function criarQuizzTela3_3_Validacoes() {
     return erroContador;
 
 }
+function testandoURL(urlFornecida) {
+    let expressão =
+        /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
+    let regExp = new RegExp(expressão);
+    let url = urlFornecida;
+
+    if (!(url.match(regExp))) {
+        console.log("erro na Imagem");
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
 function avacarTela3_4() {
     const tela3_2 = document.querySelector('.tela-3-3');
     tela3_2.classList.add("escondido");
