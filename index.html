@@ -20,7 +20,7 @@
     </header>
     <main>
         <!-- Tela 1 -->
-        <section class="tela-1 escondido">
+        <section class="tela-1">
 
             <!-- NENHUM QUIZZ - Criar QUIZZ -->
             <section class="nenhum-quizz">
@@ -165,7 +165,7 @@
 
 
         <!-- tela 3 -->
-        <section class="tela-3 ">
+        <section class="tela-3 escondido">
             <!-- tela 3.1 -->
             <section class="tela-3-criacao-quizz tela-3-1 escondido">
                 <h2>Comece pelo começo</h2>
@@ -178,7 +178,7 @@
                 <button onclick="criarQuizzTela3_1()">Prosseguir pra criar perguntas</button>
             </section>
             <!-- tela 3.2 -->
-            <section class="tela-3-criacao-quizz tela-3-2 ">
+            <section class="tela-3-criacao-quizz tela-3-2 escondido">
                 <h2>Crie suas perguntas</h2>
                 <div>
                     <h3>Pergunta 1</h3>
@@ -204,17 +204,7 @@
                     <input type="text" placeholder="URL da imagem 3">
                 </div>
 
-                <article class="outras-opcoes">
-                    <h4>Pergunta 2</h4>
-                    <ion-icon name="create-outline"></ion-icon>
-                </article>
 
-                <article class="outras-opcoes">
-                    <h4>Pergunta 3</h4>
-                    <ion-icon name="create-outline"></ion-icon>
-                </article>
-
-                <button onclick="criarQuizzTela3_2()">Prosseguir pra criar níveis</button>
             </section>
 
             <!-- tela 3.3 -->
@@ -228,33 +218,20 @@
                     <textarea name="descricao-nivel" class="descricao-nivel" cols="10" rows="10"
                         placeholder="Descrição do nível"></textarea>
                 </div>
+                <!-- tela 3.4 -->
+                <section class="tela-3-4 escondido">
+                    <h2>Seu quizz está pronto!</h2>
+                    <div>
+                        <div class="gradiente"></div>
+                        <img src="img/simpsons.jpeg" alt="Simpsons">
+                        <p>Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
+                    </div>
 
-                <article class="outras-opcoes">
-                    <h4>Nível 2</h4>
-                    <ion-icon onclick="abrirEditarQuizz()" name="create-outline"></ion-icon>
-                </article>
+                    <button>Acessar Quizz</button>
+                    <span onclick="voltarHome()">Voltar para Home</span>
 
-                <article class="outras-opcoes">
-                    <h4>Nível 3</h4>
-                    <ion-icon name="create-outline"></ion-icon>
-                </article>
-                <button onclick="criarQuizzTela3_3()">Finalizar Quizz</button>
+                </section>
             </section>
-
-            <!-- tela 3.4 -->
-            <section class="tela-3-4 escondido">
-                <h2>Seu quizz está pronto!</h2>
-                <div>
-                    <div class="gradiente"></div>
-                    <img src="img/simpsons.jpeg" alt="Simpsons">
-                    <p>Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
-                </div>
-
-                <button>Acessar Quizz</button>
-                <span onclick="voltarHome()">Voltar para Home</span>
-
-            </section>
-        </section>
 
     </main>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

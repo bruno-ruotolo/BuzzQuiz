@@ -5,11 +5,16 @@ const tela2 = document.querySelector('.tela-2');
 const tela3 = document.querySelector('.tela-3');
 let arrayIDS = [];
 
-
-//MUDAR A FUNÇÃO DE VALIDAÇÃO DE URL SEGUINDO OS ARTIGOS PROPOSTOS PELA VIVI
-
 // function inicializada toda vez que clicar em Criar Quizz
+
+
+// FALTA TRANSFORMAR TODOS OS CODELISTS DO SELECTORALL EM ARRAYS COLOCANDO O ..., O JS ESTÁ CONVERTENDO AUTOMATICO PARA USAR O .FOREACH
+//AO FINAL QUERO REDUZIR TODAS AS FUNÇÕES REPEDETIDOS COMO (CRIAR QUIZZ, MOSTRARTELA, ETC) EM UMA
+
 function criarQuizz() {
+    let quantidadePerguntas = 0;
+    let quantidadeNiveis = 0;
+
     tela1.classList.add("escondido");
     const tela3_1 = document.querySelector('.tela-3-1');
     tela3.classList.remove("escondido");
@@ -22,6 +27,7 @@ function criarQuizzTela3_1() {
     }
     else if (criarQuizzTela3_1_Validacoes() === 0) {
         avacarTela3_2();
+        mostrarTela3_2();
     }
 }
 
@@ -42,15 +48,14 @@ function criarQuizzTela3_1_Validacoes() {
     const quantidadePerguntaValue = parseInt(document.querySelector('.quantidade-pergunta').value);
     const quantidadeNiveisPerguntaValue = parseInt(document.querySelector('.quantidade-niveis-pergunta').value);
 
-    const validacoesParaUrl = urlPerguntaValue.includes('jpg') || urlPerguntaValue.includes('png') || urlPerguntaValue.includes('jpeg');
+    quantidadePerguntas = quantidadePerguntaValue;
+    quantidadeNiveis = quantidadeNiveisPerguntaValue;
 
     inputVazio.forEach((inputVazio) => {
         if (inputVazio.value === "") {
             erroContador = 1;
         } else {
             if (tituloPerguntaValue.length < 20 || tituloPerguntaValue.length > 65) {
-                erroContador = 1;
-            } else if (!validacoesParaUrl) {
                 erroContador = 1;
             } else if (quantidadePerguntaValue < 3) {
                 erroContador = 1;
@@ -59,21 +64,63 @@ function criarQuizzTela3_1_Validacoes() {
                 erroContador = 1;
                 console.log("Teste Nivel");
             } else {
-                (erroContador = 0)
+                (erroContador = 0);
             };
         }
+
+        erroContador = testandoURL(urlPerguntaValue);
 
     });
 
     return erroContador;
 }
 
+function mostrarTela3_2() {
+    const querySelectorTela3_2 = document.querySelector(".tela-3-2");
+
+    for (let i = 2; i <= quantidadePerguntas; i++) {
+        querySelectorTela3_2.innerHTML += `<div class="perguntass"> 
+        <article class="outras-opcoes">
+        <h4>Pergunta ${i}</h4>
+        <ion-icon onclick = "editarPerguntas(this, 2)" name="create-outline"></ion-icon>
+    </article>
+    <div class="resposta-tela3 escondido">
+        <div> 
+            <input class="texto-pergunta" type="text" placeholder="Texto da pergunta">
+            <input class="cor-fundo-pergunta" type="text" placeholder="Cor de fundo da pergunta">
+        </div>
+        
+        <div>
+            <h3>Resposta correta</h3>
+            <input class="texto-resposta-correta" type="text" placeholder="Resposta correta">
+            <input class="url-imagem-resposta-correta" type="text" placeholder="URL da imagem">
+        </div>
+        <div>
+            <h3>Respostas incorretas</h3>
+            <input class="texto-resposta-incorreta-1" type="text" placeholder="Resposta incorreta 1">
+            <input type="text" placeholder="URL da imagem 1">
+        </div>
+        <div>
+            <input type="text" placeholder="Resposta incorreta 2">
+            <input type="text" placeholder="URL da imagem 2">
+        </div>
+        <div>
+            <input type="text" placeholder="Resposta incorreta 3">
+            <input type="text" placeholder="URL da imagem 3">
+        </div>
+    </div>`
+    }
+    querySelectorTela3_2.innerHTML += `<button onclick="criarQuizzTela3_2()">Prosseguir pra criar níveis</button>
+    </section>`;
+}
+
 function criarQuizzTela3_2() {
-    if (criarQuizzTela3_2_Validacoes() === 1) {
+    if (criarQuizzTela3_2_Validacoes() === 0) {
         alert("Por favor, preencha os dados corretamente antes de prosseguir");
     }
-    else if (criarQuizzTela3_2_Validacoes() === 0) {
+    else if (criarQuizzTela3_2_Validacoes() === 1) {
         avacarTela3_3();
+        mostrarTela3_3();
     }
 }
 
@@ -93,7 +140,6 @@ function criarQuizzTela3_2_Validacoes() {
     const urlImagemRespostaCorreta = document.querySelector('.url-imagem-resposta-correta');
     const textoRespostaIncorreta = document.querySelector(".texto-resposta-incorreta-1");
 
-    //falta colocar o .lowcase
     const arrayValidacaoCor = ["a", "b", "c", "d", "e", "f", 1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 
     textoPergunta.forEach((textoPergunta) => {
@@ -139,6 +185,28 @@ function criarQuizzTela3_3() {
     else if (criarQuizzTela3_3_Validacoes() === 0) {
         avacarTela3_4();
     }
+}
+
+function mostrarTela3_3() {
+    const querySelectorTela3_3 = document.querySelector(".tela-3-3");
+
+    for (let i = 2; i <= quantidadeNiveis; i++) {
+        querySelectorTela3_3.innerHTML += `<div class="perguntass"> 
+        <article class="outras-opcoes">
+                <h4>Nível ${i}</h4>
+                <ion-icon onclick="editarPerguntas(this, 3)" name="create-outline"></ion-icon>
+            </article>
+<div class="nivel-tela3 escondido">
+    <div> 
+        <input type="text" class="titulo-nivel" placeholder="Título do nível">
+        <input type="text" class="porcentagem-minima" placeholder="% de acerto mínima">
+        <input type="text" class="imagem-nivel" placeholder="URL da imagem do nível">
+        <textarea name="descricao-nivel" class="descricao-nivel" cols="10" rows="10"
+            placeholder="Descrição do nível"></textarea>
+    </div>
+</div>`
+    }
+    querySelectorTela3_3.innerHTML += ` <button onclick="criarQuizzTela3_3()">Finalizar Quizz</button>`;
 }
 
 
@@ -221,8 +289,19 @@ function avacarTela3_4() {
     tela3_3.classList.remove("escondido");
 }
 
-function abrirEditarQuizz() {
 
+function editarPerguntas(este, tela) {
+    console.log(este.parentNode.parentNode);
+
+    if (tela == 2) {
+        const querySelectorResposasTela3 = este.parentNode.parentNode.querySelector(`.resposta-tela3`);
+        querySelectorResposasTela3.classList.remove("escondido");
+    }
+
+    if (tela == 3) {
+        const querySelectorNiveisTela3 = este.parentNode.parentNode.querySelector(`.nivel-tela3`);
+        querySelectorNiveisTela3.classList.remove("escondido");
+    }
 }
 
 
@@ -250,6 +329,7 @@ function reiniciarQuizz() {
 function listagemQuizzes() {
     const promise = axios.get('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes');
     promise.then((quizzes) => {
+        console.log(quizzes);
         document.querySelector('.todos-quizzes').innerHTML = "<h1>Todos os Quizzes</h1>";
         document.querySelector('.seus-quizzes-imagens').innerHTML = "";
         atualizaEVerificaLocalStorage();
