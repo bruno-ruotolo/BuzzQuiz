@@ -180,37 +180,38 @@
             <!-- tela 3.2 -->
             <section class="tela-3-criacao-quizz tela-3-2 escondido">
                 <h2>Crie suas perguntas</h2>
-                <div>
-                    <h3>Pergunta 1</h3>
-                    <input class="texto-pergunta" type="text" placeholder="Texto da pergunta">
-                    <input class="cor-fundo-pergunta" type="text" placeholder="Cor de fundo da pergunta">
+                <div class="pergunta-1">
+                    <div>
+                        <h3>Pergunta 1</h3>
+                        <input class="texto-pergunta" type="text" placeholder="Texto da pergunta">
+                        <input class="cor-fundo-pergunta" type="text" placeholder="Cor de fundo da pergunta">
+                    </div>
+                    <div>
+                        <h3>Resposta correta</h3>
+                        <input class="texto-resposta-correta" type="text" placeholder="Resposta correta">
+                        <input class="url-imagem-resposta-correta" type="text" placeholder="URL da imagem">
+                    </div>
+                    <div>
+                        <h3>Respostas incorretas</h3>
+                        <input class="texto-resposta-incorreta-1" type="text" placeholder="Resposta incorreta 1">
+                        <input class="url-resposta-incorreta-1" type="text" placeholder="URL da imagem 1">
+                    </div>
+                    <div>
+                        <input class="titulo-resposta-incorreta-2" type="text" placeholder="Resposta incorreta 2">
+                        <input class="url-resposta-incorreta-2" type="text" placeholder="URL da imagem 2">
+                    </div>
+                    <div>
+                        <input class="titulo-resposta-incorreta-3" type="text" placeholder="Resposta incorreta 3">
+                        <input class="url-resposta-incorreta-3" type="text" placeholder="URL da imagem 3">
+                    </div>
                 </div>
-                <div>
-                    <h3>Resposta correta</h3>
-                    <input class="texto-resposta-correta" type="text" placeholder="Resposta correta">
-                    <input class="url-imagem-resposta-correta" type="text" placeholder="URL da imagem">
-                </div>
-                <div>
-                    <h3>Respostas incorretas</h3>
-                    <input class="texto-resposta-incorreta-1" type="text" placeholder="Resposta incorreta 1">
-                    <input type="text" placeholder="URL da imagem 1">
-                </div>
-                <div>
-                    <input type="text" placeholder="Resposta incorreta 2">
-                    <input type="text" placeholder="URL da imagem 2">
-                </div>
-                <div>
-                    <input type="text" placeholder="Resposta incorreta 3">
-                    <input type="text" placeholder="URL da imagem 3">
-                </div>
-
 
             </section>
 
             <!-- tela 3.3 -->
             <section class="tela-3-criacao-quizz tela-3-3 escondido">
                 <h2>Agora, decida os níveis!</h2>
-                <div>
+                <div class="nivel-quizz-1">
                     <h3>Nível 1</h3>
                     <input type="text" class="titulo-nivel" placeholder="Título do nível">
                     <input type="text" class="porcentagem-minima" placeholder="% de acerto mínima">
@@ -218,20 +219,21 @@
                     <textarea name="descricao-nivel" class="descricao-nivel" cols="10" rows="10"
                         placeholder="Descrição do nível"></textarea>
                 </div>
-                <!-- tela 3.4 -->
-                <section class="tela-3-4 escondido">
-                    <h2>Seu quizz está pronto!</h2>
-                    <div>
-                        <div class="gradiente"></div>
-                        <img src="img/simpsons.jpeg" alt="Simpsons">
-                        <p>Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
-                    </div>
-
-                    <button>Acessar Quizz</button>
-                    <span onclick="voltarHome()">Voltar para Home</span>
-
-                </section>
             </section>
+            <!-- tela 3.4 -->
+            <section class="tela-3-4 escondido">
+                <h2>Seu quizz está pronto!</h2>
+                <div>
+                    <div class="gradiente"></div>
+                    <img src="img/simpsons.jpeg" alt="Simpsons">
+                    <p>Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
+                </div>
+
+                <button>Acessar Quizz</button>
+                <span onclick="voltarHome()">Voltar para Home</span>
+
+            </section>
+        </section>
 
     </main>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
