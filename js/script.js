@@ -428,7 +428,7 @@ function voltarHome() {
 
 function reiniciarQuizz() {
     const topoDaTela = document.querySelector('.tela-2-container-titulo');
-    const resultadosDoQuizz = document.querySelector('.tela-2-resultados-e-fim-do-quizz');
+    const resultadosDoQuizz = document.querySelector('.tela-2-resultados');
     topoDaTela.scrollIntoView();
     resultadosDoQuizz.classList.add("escondido");
     //Falta zerar as respostas q devem retornar pro estado inicial
@@ -510,6 +510,7 @@ function mostrarQuizTela2(idQuizz) {
             <h2>${quizz.data.title}</h2>`;
         let questoesQuizzEmbaralhadas = quizz.data.questions.sort(embaralharArray);
         questoesQuizzEmbaralhadas.forEach(imprimeQuestoes);
+        // let arrayLevels = quizz.data.levels;
     }
     );
     promise.catch((erro) => {
@@ -568,6 +569,26 @@ function addIDLocalStorage(id) {
 
 function compareArrays(a1, a2) {
     return a1.length === a2.length && a1.every((value, index) => value === a2[index]);
+}
+
+function finalizarQuizz(porcentagemRespostasCertas) {
+    porcentagemArrendondada = Math.round(porcentagemRespostasCertas);
+    // Pensar lógica como pegarei os niveis. Podem ser até 3.
+    if (arrayLevels.length == 1) {
+        if (porcentagemArrendondada > arrayLevels[0].minValue) {
+
+        }
+    }
+    if (arrayLevels.length == 2) {
+        if (porcentagemArrendondada > arrayLevels[0].minValue) {
+
+        }
+    }
+    if (arrayLevels.length == 3) {
+        if (porcentagemArrendondada > arrayLevels[0].minValue) {
+
+        }
+    }
 }
 
 // Funçoes para listar os Quizzes
