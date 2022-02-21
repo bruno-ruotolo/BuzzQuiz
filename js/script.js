@@ -398,10 +398,11 @@ function acessarQuizzCriado() {
 }
 
 function voltarHome() {
-    tela3.classList.add("escondido");
-    tela2.classList.add("escondido");
-    tela1.classList.remove("escondido");
+    window.location.reload();
     listagemQuizzes();
+    // tela3.classList.add("escondido");
+    // tela2.classList.add("escondido");
+    // tela1.classList.remove("escondido");
 }
 
 function reiniciarQuizz(idQuizz) {
@@ -556,7 +557,7 @@ function escrolar() {
     porcentagemBruta = (contadorCorretas / quantidadePerguntasQuizz.length) * 100;
 
     if (contatorDeRespondidas === quantidadePerguntasQuizz.length) {
-        finalizarQuizz(porcentagemBruta);
+        setTimeout(finalizarQuizz(porcentagemBruta), 2000);
     }
 
 
