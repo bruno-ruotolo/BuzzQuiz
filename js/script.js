@@ -16,6 +16,11 @@ let arrayQuestions = [];
 let arrayNiveis = [];
 
 let arrayNiveisQuizzSelecionado = [];
+
+let indiceEscrolar = 1;
+let porcentagemBruta = 0;
+let contadorCorretas = 0;
+
 // function inicializada toda vez que clicar em Criar Quizz
 
 function criarQuizz() {
@@ -361,6 +366,7 @@ function criarQuizzTela3_3_Validacoes() {
     return (erroContador || nivelContador);
 
 }
+
 function testandoURL(urlFornecida) {
     let expressão =
         /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
@@ -546,10 +552,11 @@ function imprimeQuestoes(questoes) {
     telaPerguntas.innerHTML += questaoTexto;
 }
 
-let contadorCorretas = 0;
+let contatorDeRespondidas = 0;
 
 function selecionarRespostas(elemento) {
     const imgTelaSelecionada = elemento.parentNode.querySelectorAll("div");
+    contatorDeRespondidas++;
 
     imgTelaSelecionada.forEach((imgTelaSelecionada) => {
         imgTelaSelecionada.classList.add("esbranquicar");
@@ -564,12 +571,24 @@ function selecionarRespostas(elemento) {
     })
     elemento.classList.remove("esbranquicar");
 
-    if (elemento.classList.countains("true")) {
+
+    if (elemento.classList.contains("true")) {
         contadorCorretas++;
+    }
+
+    const quantidadePerguntasQuizz = document.querySelectorAll(".tela-2-container-pergunta");
+
+    porcentagemBruta = (contadorCorretas / quantidadePerguntasQuizz.length) * 100;
+
+    console.log(contadorCorretas);
+    console.log(porcentagemBruta)
+
+    if (contatorDeRespondidas === quantidadePerguntasQuizz.length) {
+        finalizarQuizz(porcentagemBruta);
     }
     setTimeout(escrolar, 2000);
 }
-let indiceEscrolar = 1;
+
 function escrolar() {
     const counteinerSelecionado = document.querySelectorAll(".tela-2-container-pergunta");
     const telaResultado = document.querySelector(".tela-2-resultados");
@@ -577,6 +596,8 @@ function escrolar() {
     if (indiceEscrolar === counteinerSelecionado.length) {
         telaResultado.scrollIntoView(false)
         indiceEscrolar = 1;
+        contadorCorretas = 0;
+        contatorDeRespondidas = 0;
     } else {
         counteinerSelecionado[indiceEscrolar].scrollIntoView(false);
         indiceEscrolar++;
