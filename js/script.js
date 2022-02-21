@@ -688,7 +688,7 @@ function imprimirResultados(indice, porcentagem) {
     let imgResultado = arrayNiveisQuizzSelecionado[indice].image;
     let textResultado = arrayNiveisQuizzSelecionado[indice].text;
 
-    document.querySelector(".tela-2-container-pergunta-titulo").innerHTML = `<h2>${porcentagem}% de acerto: `
+    document.querySelector(".tela-2-container-pergunta-titulo").innerHTML = `<h2>${porcentagem}% de acerto: ${tituloResultado}`
 
 
     /* <div class="tela-2-resultados">
