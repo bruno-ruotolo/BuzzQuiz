@@ -546,6 +546,8 @@ function imprimeQuestoes(questoes) {
     telaPerguntas.innerHTML += questaoTexto;
 }
 
+let contadorCorretas = 0;
+
 function selecionarRespostas(elemento) {
     const imgTelaSelecionada = elemento.parentNode.querySelectorAll("div");
 
@@ -561,11 +563,12 @@ function selecionarRespostas(elemento) {
 
     })
     elemento.classList.remove("esbranquicar");
+
+    if (elemento.classList.countains("true")) {
+        contadorCorretas++;
+    }
     setTimeout(escrolar, 2000);
-
 }
-
-
 let indiceEscrolar = 1;
 function escrolar() {
     const counteinerSelecionado = document.querySelectorAll(".tela-2-container-pergunta");
