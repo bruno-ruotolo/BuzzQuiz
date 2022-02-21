@@ -76,10 +76,10 @@ function mostrarTela3_2() {
 
     for (let i = 2; i <= quantidadePerguntas; i++) {
         querySelectorTela3_2.innerHTML += `
-    <div class="perguntass pergunta-${i}"> 
+    <div data-identifier="question" class="perguntass pergunta-${i}"> 
         <article class="outras-opcoes">
         <h4>Pergunta ${i}</h4>
-        <ion-icon onclick = "editarPerguntas(this, 2)" name="create-outline"></ion-icon>
+        <ion-icon data-identifier="expand" onclick = "editarPerguntas(this, 2)" name="create-outline"></ion-icon>
     </article>
     <div class="resposta-tela3 escondido">
         <div> 
@@ -261,10 +261,10 @@ function mostrarTela3_3() {
     const querySelectorTela3_3 = document.querySelector(".tela-3-3");
 
     for (let i = 2; i <= quantidadeNiveis; i++) {
-        querySelectorTela3_3.innerHTML += `<div class="perguntass nivel-quizz-${i}"> 
+        querySelectorTela3_3.innerHTML += `<div data-identifier="level" class="perguntass nivel-quizz-${i}"> 
         <article class="outras-opcoes">
                 <h4>Nível ${i}</h4>
-                <ion-icon onclick="editarPerguntas(this, 3)" name="create-outline"></ion-icon>
+                <ion-icon data-identifier="expand" onclick="editarPerguntas(this, 3)" name="create-outline"></ion-icon>
             </article>
 <div class="nivel-tela3 escondido">
     <div> 
@@ -436,7 +436,7 @@ function mostrarQuizzesTela1(quizz) {
         seusQuizzes.classList.add('escondido');
         todosQuizzes.classList.remove('escondido');
         todosQuizzes.innerHTML += `
-    <div onclick="mostrarQuizTela2(${quizz.id})">
+    <div data-identifier="quizz-card" onclick="mostrarQuizTela2(${quizz.id})">
         <div class="gradiente"></div>
         <img src="${quizz.image}">
         <p>${quizz.title}</p>
@@ -448,7 +448,7 @@ function mostrarQuizzesTela1(quizz) {
         let seusQuizzesImagens = document.querySelector('.seus-quizzes-imagens');
         if (arrayIDS.includes(quizz.id)) {
             seusQuizzesImagens.innerHTML += `
-    <div onclick="mostrarQuizTela2(${quizz.id})">
+    <div data-identifier="quizz-card" onclick="mostrarQuizTela2(${quizz.id})">
         <div class="gradiente"></div>
         <img src="${quizz.image}">
         <p>${quizz.title}</p>
@@ -456,7 +456,7 @@ function mostrarQuizzesTela1(quizz) {
     `;
         } else {
             todosQuizzes.innerHTML += `
-    <div onclick="mostrarQuizTela2(${quizz.id})">
+    <div data-identifier="quizz-card" onclick="mostrarQuizTela2(${quizz.id})">
         <div class="gradiente"></div>
         <img src="${quizz.image}">
         <p>${quizz.title}</p>
@@ -502,7 +502,7 @@ function imprimeQuestoes(questoes) {
     let telaPerguntas = document.querySelector('.tela-2-perguntas');
     let questaoTexto = "";
     questaoTexto += `
-    <div class="tela-2-container-pergunta">
+    <div data-identifier="question" class="tela-2-container-pergunta">
         <div class="tela-2-container-pergunta-titulo" style="background-color: ${questoes.color};">
             <h2>${questoes.title}</h2>
         </div>
@@ -510,7 +510,7 @@ function imprimeQuestoes(questoes) {
     let respostasQuizzEmbaralhadas = questoes.answers.sort(embaralharArray);
     respostasQuizzEmbaralhadas.forEach((resposta) => {
         questaoTexto += `
-        <div class = "${resposta.isCorrectAnswer}" onclick = "selecionarRespostas(this)">
+        <div data-identifier="answer" class = "${resposta.isCorrectAnswer}" onclick = "selecionarRespostas(this)">
             <img src="${resposta.image}">
             <p class="textoResposta" >${resposta.text}</p>
         </div>
