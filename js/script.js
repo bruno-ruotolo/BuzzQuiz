@@ -17,7 +17,7 @@ let arrayNiveis = [];
 
 let arrayNiveisQuizzSelecionado = [];
 
-let indiceEscrolar = 1; s
+let indiceEscrolar = 1;
 let porcentagemBruta = 0;
 let contadorCorretas = 0;
 
@@ -552,9 +552,11 @@ function imprimeQuestoes(questoes) {
     telaPerguntas.innerHTML += questaoTexto;
 }
 
+let contatorDeRespondidas = 0;
 
 function selecionarRespostas(elemento) {
     const imgTelaSelecionada = elemento.parentNode.querySelectorAll("div");
+    contatorDeRespondidas++;
 
     imgTelaSelecionada.forEach((imgTelaSelecionada) => {
         imgTelaSelecionada.classList.add("esbranquicar");
@@ -581,6 +583,9 @@ function selecionarRespostas(elemento) {
     console.log(contadorCorretas);
     console.log(porcentagemBruta)
 
+    if (contatorDeRespondidas === quantidadePerguntasQuizz.length) {
+        finalizarQuizz(porcentagemBruta);
+    }
     setTimeout(escrolar, 2000);
 }
 
@@ -592,6 +597,7 @@ function escrolar() {
         telaResultado.scrollIntoView(false)
         indiceEscrolar = 1;
         contadorCorretas = 0;
+        contatorDeRespondidas = 0;
     } else {
         counteinerSelecionado[indiceEscrolar].scrollIntoView(false);
         indiceEscrolar++;
