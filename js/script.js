@@ -14,6 +14,8 @@ let quantidadeNiveis = 0;
 
 let arrayQuestions = [];
 let arrayNiveis = [];
+
+let arrayNiveisQuizzSelecionado = [];
 // function inicializada toda vez que clicar em Criar Quizz
 
 function criarQuizz() {
@@ -510,7 +512,7 @@ function mostrarQuizTela2(idQuizz) {
             <h2>${quizz.data.title}</h2>`;
         let questoesQuizzEmbaralhadas = quizz.data.questions.sort(embaralharArray);
         questoesQuizzEmbaralhadas.forEach(imprimeQuestoes);
-        // let arrayLevels = quizz.data.levels;
+        arrayNiveisQuizzSelecionado = quizz.data.levels;
     }
     );
     promise.catch((erro) => {
@@ -544,8 +546,6 @@ function imprimeQuestoes(questoes) {
     telaPerguntas.innerHTML += questaoTexto;
 }
 
-let contadorCorretas = 0;
-
 function selecionarRespostas(elemento) {
     const imgTelaSelecionada = elemento.parentNode.querySelectorAll("div");
 
@@ -561,12 +561,11 @@ function selecionarRespostas(elemento) {
 
     })
     elemento.classList.remove("esbranquicar");
-
-    if (elemento.classList.countains("true")) {
-        contadorCorretas++;
-    }
     setTimeout(escrolar, 2000);
+
 }
+
+
 let indiceEscrolar = 1;
 function escrolar() {
     const counteinerSelecionado = document.querySelectorAll(".tela-2-container-pergunta");
@@ -611,21 +610,89 @@ function compareArrays(a1, a2) {
 function finalizarQuizz(porcentagemRespostasCertas) {
     porcentagemArrendondada = Math.round(porcentagemRespostasCertas);
     // Pensar lógica como pegarei os niveis. Podem ser até 3.
-    if (arrayLevels.length == 1) {
-        if (porcentagemArrendondada > arrayLevels[0].minValue) {
-
+    if (arrayNiveisQuizzSelecionado.length == 1) {
+        if (porcentagemArrendondada > arrayNiveisQuizzSelecionado[0].minValue) {
+            //Nivel do indice 0 é o certo.
         }
     }
-    if (arrayLevels.length == 2) {
-        if (porcentagemArrendondada > arrayLevels[0].minValue) {
-
+    if (arrayNiveisQuizzSelecionado.length == 2) {
+        if (arrayNiveisQuizzSelecionado[0].minValue > arrayNiveisQuizzSelecionado[1].minValue) {
+            if (arrayNiveisQuizzSelecionado[0].minValue < porcentagemArrendondada) {
+                // Nivel do Indice 0 é o certo.
+            } else if (arrayNiveisQuizzSelecionado[1] < porcentagemArrendondada) {
+                //Nivel do indice 1 é o certo.
+            }
+        } else if (arrayNiveisQuizzSelecionado[1].minValue < porcentagemArrendondada) {
+            //Nivel do indice 1 é o certo.
+        } else if (arrayNiveisQuizzSelecionado[0].minValue < porcentagemArrendondada) {
+            //Nivel do indico 0 é o certo.
         }
     }
-    if (arrayLevels.length == 3) {
-        if (porcentagemArrendondada > arrayLevels[0].minValue) {
+    if (arrayNiveisQuizzSelecionado.length == 3) {
+        if (arrayNiveisQuizzSelecionado[0].minValue > arrayNiveisQuizzSelecionado[1].minValue && arrayNiveisQuizzSelecionado[0].minValue > arrayNiveisQuizzSelecionado[2].minValue) {
+            //Indice 0 é o maior.
+            if (porcentagemArrendondada > arrayNiveisQuizzSelecionado[0].minValue) {
+                //Nivel indice 0 é certo
+            } else if (arrayNiveisQuizzSelecionado[1].minValue > arrayNiveisQuizzSelecionado[2].minValue) {
+                if (porcentagemArrendondada > arrayNiveisQuizzSelecionado[1].minValue) {
+                    // Nivel indice 1 é o certo.
+                } else {
+                    //Nivel indice 2 é o certo
+                }
+            } else {
+                if (porcentagemArrendondada > arrayNiveisQuizzSelecionado[2].minValue) {
+                    //Nivel indice 2 é o certo
+                } else {
+                    //Nivel indice 1 é o certo.
+                }
+            }
+        }
+        if (arrayNiveisQuizzSelecionado[1].minValue > arrayNiveisQuizzSelecionado[0].minValue && arrayNiveisQuizzSelecionado[1].minValue > arrayNiveisQuizzSelecionado[2].minValue) {
+            //Indice 1 é o maior.
+            if (porcentagemArrendondada > arrayNiveisQuizzSelecionado[1].minValue) {
+                //Nivel indice 1 é certo
+            } else if (arrayNiveisQuizzSelecionado[0].minValue > arrayNiveisQuizzSelecionado[2].minValue) {
+                if (porcentagemArrendondada > arrayNiveisQuizzSelecionado[0].minValue) {
+                    // Nivel indice 0 é o certo.
+                } else {
+                    //Nivel indice 2 é o certo
+                }
+            } else if (porcentagemArrendondada > arrayNiveisQuizzSelecionado[2].minValue) {
+                //Nivel indice 2 é o certo
+            } else {
+                //Nivel indice 0 é o certo.
+            }
+        }
 
+        if (arrayNiveisQuizzSelecionado[2].minValue > arrayNiveisQuizzSelecionado[0].minValue && arrayNiveisQuizzSelecionado[2].minValue > arrayNiveisQuizzSelecionado[1].minValue) {
+            //Indice 2 é o maior.
+            if (porcentagemArrendondada > arrayNiveisQuizzSelecionado[2].minValue) {
+                //Nivel indice 2 é certo
+            } else if (arrayNiveisQuizzSelecionado[0].minValue > arrayNiveisQuizzSelecionado[1].minValue) {
+                if (porcentagemArrendondada > arrayNiveisQuizzSelecionado[0].minValue) {
+                    // Nivel indice 0 é o certo.
+                } else {
+                    //Nivel indice 1 é o certo
+                }
+            } else if (porcentagemArrendondada > arrayNiveisQuizzSelecionado[1].minValue) {
+                //Nivel indice 1 é o certo
+            } else {
+                //Nivel indice 0 é o certo.
+            }
         }
     }
+}
+
+function imprimirResultados(indice, porcentagem) {
+    let tituloResultado = arrayNiveisQuizzSelecionado[indice].title;
+    let imgResultado = arrayNiveisQuizzSelecionado[indice].image;
+    let textResultado = arrayNiveisQuizzSelecionado[indice].text;
+
+    document.querySelector(".tela-2-container-pergunta-titulo").innerHTML = `<h2>${porcentagem}% de acerto: ${tituloResultado}`
+    document.querySelector(".tela-2-resultado-container").innerHTML = `
+    <img src="${imgResultado}" alt="Dumbledore">
+    <p>${textResultado}</p>
+    `
 }
 
 // Funçoes para listar os Quizzes
