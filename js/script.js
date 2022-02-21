@@ -588,7 +588,7 @@ function selecionarRespostas(elemento) {
     console.log(porcentagemBruta);
 
     if (contatorDeRespondidas === quantidadePerguntasQuizz.length) {
-        finalizarQuizz(porcentagemBruta);
+        setTimeout(finalizarQuizz(porcentagemBruta), 2000);
     }
     setTimeout(escrolar, 2000);
 }
