@@ -615,20 +615,26 @@ function finalizarQuizz(porcentagemRespostasCertas) {
     // Pensar lógica como pegarei os niveis. Podem ser até 3.
     if (arrayNiveisQuizzSelecionado.length == 1) {
         if (porcentagemArrendondada > arrayNiveisQuizzSelecionado[0].minValue) {
-            //Nivel do indice 0 é o certo.
+            imprimirResultados(0, porcentagemArrendondada);
         }
     }
     if (arrayNiveisQuizzSelecionado.length == 2) {
         if (arrayNiveisQuizzSelecionado[0].minValue > arrayNiveisQuizzSelecionado[1].minValue) {
             if (arrayNiveisQuizzSelecionado[0].minValue < porcentagemArrendondada) {
                 // Nivel do Indice 0 é o certo.
+                imprimirResultados(0, porcentagemArrendondada);
             } else if (arrayNiveisQuizzSelecionado[1] < porcentagemArrendondada) {
                 //Nivel do indice 1 é o certo.
+                imprimirResultados(1, porcentagemArrendondada);
+
             }
         } else if (arrayNiveisQuizzSelecionado[1].minValue < porcentagemArrendondada) {
             //Nivel do indice 1 é o certo.
+            imprimirResultados(1, porcentagemArrendondada);
         } else if (arrayNiveisQuizzSelecionado[0].minValue < porcentagemArrendondada) {
             //Nivel do indico 0 é o certo.
+            imprimirResultados(0, porcentagemArrendondada);
+
         }
     }
     if (arrayNiveisQuizzSelecionado.length == 3) {
@@ -636,17 +642,24 @@ function finalizarQuizz(porcentagemRespostasCertas) {
             //Indice 0 é o maior.
             if (porcentagemArrendondada > arrayNiveisQuizzSelecionado[0].minValue) {
                 //Nivel indice 0 é certo
+                imprimirResultados(0, porcentagemArrendondada);
+
             } else if (arrayNiveisQuizzSelecionado[1].minValue > arrayNiveisQuizzSelecionado[2].minValue) {
                 if (porcentagemArrendondada > arrayNiveisQuizzSelecionado[1].minValue) {
                     // Nivel indice 1 é o certo.
+                    imprimirResultados(1, porcentagemArrendondada);
                 } else {
                     //Nivel indice 2 é o certo
+                    imprimirResultados(2, porcentagemArrendondada);
+
                 }
             } else {
                 if (porcentagemArrendondada > arrayNiveisQuizzSelecionado[2].minValue) {
                     //Nivel indice 2 é o certo
+                    imprimirResultados(2, porcentagemArrendondada);
                 } else {
                     //Nivel indice 1 é o certo.
+                    imprimirResultados(1, porcentagemArrendondada);
                 }
             }
         }
@@ -657,13 +670,19 @@ function finalizarQuizz(porcentagemRespostasCertas) {
             } else if (arrayNiveisQuizzSelecionado[0].minValue > arrayNiveisQuizzSelecionado[2].minValue) {
                 if (porcentagemArrendondada > arrayNiveisQuizzSelecionado[0].minValue) {
                     // Nivel indice 0 é o certo.
+                    imprimirResultados(0, porcentagemArrendondada);
+
                 } else {
                     //Nivel indice 2 é o certo
+                    imprimirResultados(2, porcentagemArrendondada);
                 }
             } else if (porcentagemArrendondada > arrayNiveisQuizzSelecionado[2].minValue) {
                 //Nivel indice 2 é o certo
+                imprimirResultados(2, porcentagemArrendondada);
             } else {
                 //Nivel indice 0 é o certo.
+                imprimirResultados(0, porcentagemArrendondada);
+
             }
         }
 
@@ -671,16 +690,25 @@ function finalizarQuizz(porcentagemRespostasCertas) {
             //Indice 2 é o maior.
             if (porcentagemArrendondada > arrayNiveisQuizzSelecionado[2].minValue) {
                 //Nivel indice 2 é certo
+                imprimirResultados(2, porcentagemArrendondada);
             } else if (arrayNiveisQuizzSelecionado[0].minValue > arrayNiveisQuizzSelecionado[1].minValue) {
                 if (porcentagemArrendondada > arrayNiveisQuizzSelecionado[0].minValue) {
                     // Nivel indice 0 é o certo.
+                    imprimirResultados(0, porcentagemArrendondada);
+
                 } else {
                     //Nivel indice 1 é o certo
+                    imprimirResultados(1, porcentagemArrendondada);
+
                 }
             } else if (porcentagemArrendondada > arrayNiveisQuizzSelecionado[1].minValue) {
                 //Nivel indice 1 é o certo
+                imprimirResultados(1, porcentagemArrendondada);
+
             } else {
                 //Nivel indice 0 é o certo.
+                imprimirResultados(0, porcentagemArrendondada);
+
             }
         }
     }
