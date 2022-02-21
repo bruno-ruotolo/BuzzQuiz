@@ -7,6 +7,7 @@ let arrayIDS = [];
 
 let tituloPerguntaValue = null;
 let urlPerguntaValue = null;
+let idNovoQuizz = null;
 
 let quantidadePerguntas = 0;
 let quantidadeNiveis = 0;
@@ -257,6 +258,7 @@ function criarQuizzTela3_3() {
         }
         avacarTela3_4();
         postArrayCompleto(arrayCompleto);
+        mostrarTela3_4();
     }
 }
 
@@ -378,9 +380,22 @@ function avacarTela3_4() {
     tela3_3.classList.remove("escondido");
 }
 
+function mostrarTela3_4() {
+    const quizzCriado = document.querySelector(".imagem-titulo-quizz-criado");
+    quizzCriado.innerHTML = `
+            <div class="gradiente"></div>
+            <img src=${urlPerguntaValue} alt="Simpsons">
+            <p>${tituloPerguntaValue}</p>`
+
+}
+
 function postArrayCompleto(arrayCompleto) {
     const promise = axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", arrayCompleto);
-    promise.then(addIDLocalStorage(arrayCompleto.data.id));
+    promise.then((response) => {
+        console.log(response);
+        idNovoQuizz = response.data.id;
+        addIDLocalStorage(idNovoQuizz);
+    });
 
 }
 
@@ -399,12 +414,16 @@ function editarPerguntas(este, tela) {
 }
 
 
-
+function acessarQuizzCriado() {
+    tela3.classList.add('escondido');
+    mostrarQuizTela2(idNovoQuizz);
+}
 
 function voltarHome() {
     tela3.classList.add("escondido");
     tela2.classList.add("escondido");
     tela1.classList.remove("escondido");
+    listagemQuizzes();
 }
 
 function reiniciarQuizz() {
@@ -486,15 +505,20 @@ function mostrarQuizTela2(idQuizz) {
     promise.then((quizz) => {
         tela2Titulo.innerHTML = `
             <div></div>
-            <!-- colocar gradient -->
+            <div class="gradiente-tela-2"></div>
             <img src="${quizz.data.image}" alt="">
             <h2>${quizz.data.title}</h2>`;
-        quizz.data.questions.forEach(imprimeQuestoes);
+        let questoesQuizzEmbaralhadas = quizz.data.questions.sort(embaralharArray);
+        questoesQuizzEmbaralhadas.forEach(imprimeQuestoes);
     }
     );
     promise.catch((erro) => {
         console.error(erro.response.status);
     });
+}
+
+function embaralharArray() {
+    return Math.random() - 0.5;
 }
 
 function imprimeQuestoes(questoes) {
@@ -506,7 +530,8 @@ function imprimeQuestoes(questoes) {
             <h2>${questoes.title}</h2>
         </div>
         <div class="tela-2-container-pergunta-respostas">`;
-    questoes.answers.forEach((resposta) => {
+    let respostasQuizzEmbaralhadas = questoes.answers.sort(embaralharArray);
+    respostasQuizzEmbaralhadas.forEach((resposta) => {
         questaoTexto += `
         <div class = "${resposta.isCorrectAnswer}">
             <img src="${resposta.image}">
