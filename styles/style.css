@@ -446,6 +446,11 @@ h4 {
     color: #818181;
 }
 
+.nivel-tela3 div {
+    width: 100%;
+    padding: 0;
+}
+
 .esbranquicar {
     filter: opacity(0.3);
 }
@@ -474,6 +479,8 @@ h4 {
     .tela-2 {
         background-color: inherit;
         align-items: center;
+        position: absolute;
+        left: 0;
     }
 
     .tela-2-resultados img {
