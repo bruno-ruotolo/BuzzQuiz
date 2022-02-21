@@ -1,11 +1,10 @@
-//TESTANDO PUSH
 // Variaveis Globais
 const tela1 = document.querySelector('.tela-1');
 const tela2 = document.querySelector('.tela-2');
 const tela3 = document.querySelector('.tela-3');
 let arrayIDS = [];
 
-let tituloPerguntaValue = null;
+let tituloPerguntaValue = '';
 let urlPerguntaValue = null;
 let idNovoQuizz = null;
 
@@ -22,12 +21,35 @@ let porcentagemBruta = 0;
 let contadorCorretas = 0;
 
 // function inicializada toda vez que clicar em Criar Quizz
-
 function criarQuizz() {
     tela1.classList.add("escondido");
     const tela3_1 = document.querySelector('.tela-3-1');
     tela3.classList.remove("escondido");
     tela3_1.classList.remove("escondido");
+}
+
+function criarQuizzTela3_1_Validacoes() {
+    let erroContador = false;
+
+    tituloPerguntaValue = document.querySelector('.titulo-pergunta').value;
+    urlPerguntaValue = document.querySelector('.url-pergunta').value;
+    const quantidadePerguntaValue = document.querySelector('.quantidade-pergunta').value;
+    const quantidadeNiveisPerguntaValue = document.querySelector('.quantidade-niveis-pergunta').value;
+
+    quantidadePerguntas = quantidadePerguntaValue;
+    quantidadeNiveis = quantidadeNiveisPerguntaValue;
+
+    erroContador = testandoURL(urlPerguntaValue);
+
+    if (tituloPerguntaValue.length < 20 || tituloPerguntaValue.length > 65 || tituloPerguntaValue == '') {
+        erroContador = true;
+    } else if (quantidadePerguntaValue < 3 || isNaN(quantidadePerguntaValue)) {
+        erroContador = true;
+    } else if (quantidadeNiveisPerguntaValue < 2 || isNaN(quantidadeNiveisPerguntaValue)) {
+        erroContador = true;
+    };
+
+    return erroContador;
 }
 
 function criarQuizzTela3_1() {
@@ -47,42 +69,7 @@ function avacarTela3_2() {
     tela3_2.classList.remove("escondido");
 }
 
-function criarQuizzTela3_1_Validacoes() {
-    let erroContador = false;
 
-    const inputVazio = document.querySelectorAll(".tela-3-1 input");
-
-    tituloPerguntaValue = document.querySelector('.titulo-pergunta').value;
-    urlPerguntaValue = document.querySelector('.url-pergunta').value;
-    const quantidadePerguntaValue = parseInt(document.querySelector('.quantidade-pergunta').value);
-    const quantidadeNiveisPerguntaValue = parseInt(document.querySelector('.quantidade-niveis-pergunta').value);
-
-    quantidadePerguntas = quantidadePerguntaValue;
-    quantidadeNiveis = quantidadeNiveisPerguntaValue;
-
-    inputVazio.forEach((inputVazio) => {
-        if (inputVazio.value === "") {
-            erroContador = true;
-            console.log("Erro em todos Inputs")
-        } else {
-            if (tituloPerguntaValue.length < 20 || tituloPerguntaValue.length > 65) {
-                erroContador = true;
-            } else if (quantidadePerguntaValue < 3) { //Voltar para <3
-                erroContador = true;
-                console.log("Teste Quantidade");
-            } else if (quantidadeNiveisPerguntaValue < 2) { //Voltar para < 2
-                erroContador = true;
-                console.log("Teste Nivel");
-
-            };
-        }
-
-        erroContador = testandoURL(urlPerguntaValue);
-
-    });
-
-    return erroContador;
-}
 
 function mostrarTela3_2() {
     const querySelectorTela3_2 = document.querySelector(".tela-3-2");
@@ -193,7 +180,6 @@ function criarArrayQuestions(indice) {
         answers: answersArray
 
     })
-    console.log(arrayQuestions);
 }
 
 function criarQuizzTela3_2_Validacoes() {
@@ -202,16 +188,22 @@ function criarQuizzTela3_2_Validacoes() {
     const textoPergunta = document.querySelectorAll('.texto-pergunta');
     const corFundoPergunta = document.querySelectorAll('.cor-fundo-pergunta');
     const textoRespostaCorreta = document.querySelector('.texto-resposta-correta');
-    const urlImagemRespostaCorreta = document.querySelector('.url-imagem-resposta-correta'); // Colocar validações para incorretas
+    const urlImagemRespostaCorreta = document.querySelector('.url-imagem-resposta-correta');
     const textoRespostaIncorreta = document.querySelector(".texto-resposta-incorreta-1");
+    const urlImagemRespostaIncorreta1 = document.querySelectorAll('.url-resposta-incorreta-1');
 
 
     const arrayValidacaoCor = ["a", "b", "c", "d", "e", "f", 1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 
+    erroContador = (!(testandoURL(urlImagemRespostaCorreta.value)));
+    urlImagemRespostaIncorreta1.forEach((urlImagemRespostaIncorreta1) => {
+        erroContador = (!(testandoURL(urlImagemRespostaIncorreta1.value)));
+    })
+
+
     textoPergunta.forEach((textoPergunta) => {
         if (textoPergunta.value.length < 20 || textoPergunta.value === "") {
             erroContador = true;
-            console.log("Erro no texto");
         }
     });
 
@@ -223,26 +215,22 @@ function criarQuizzTela3_2_Validacoes() {
                 corContador++;
                 if (corContador > 10) {
                     erroContador = true;
-                    console.log("Erro a cor");
                 } else { erroContador = false }
             }
         }
         if (corFundoPergunta.value.length !== 7 || corFundoPergunta.value === "" || corFundoPergunta.value[0] !== "#") {
             erroContador = true;
-            console.log("Erro na cor");
         } else { erroContador = false; }
     });
 
-    erroContador = (!(testandoURL(urlImagemRespostaCorreta.value)));
+
 
     if (textoRespostaCorreta.value === "") {
         erroContador = true;
-        console.log("eero titulo correta");
     } else { erroContador = false; }
 
     if (textoRespostaIncorreta.value === "") {
         erroContador = true;
-        console.log("eero titulo incorreta");
     } else { erroContador = false; }
 
     return erroContador;
@@ -256,7 +244,6 @@ function criarQuizzTela3_3() {
     else if (criarQuizzTela3_3_Validacoes() === false) {
         for (let i = 1; i <= quantidadeNiveis; i++) {
             criarArrayNiveis(i);
-            console.log(arrayNiveis); ''
         }
         arrayCompleto = {
             title: tituloPerguntaValue,
@@ -319,53 +306,39 @@ function criarQuizzTela3_3_Validacoes() {
     const imagemNivel = document.querySelectorAll('.imagem-nivel');
     const descricaoNivel = document.querySelectorAll(".descricao-nivel");
 
-
-
-    tituloNivel.forEach((tituloNivel) => {
-        if (tituloNivel.value.length < 10 || tituloNivel.value === '') {
-            erroContador = true;
-        } else { erroContador = false }
-    });
-
-    porcentagemNivel.forEach((porcentagemNivel) => {
-        if (porcentagemNivel.value > 100 || porcentagemNivel.value === '' || porcentagemNivel.value < 0) {
-            erroContador = true;
-        } else { erroContador = false }
-
-        const parseIntPorcentagem = parseInt(porcentagemNivel.value);
-
-        if (parseIntPorcentagem * 1 !== parseIntPorcentagem) {
-            erroContador = true;
-            console.log("Erro na porcentagem")
-        } else { erroContador = false }
-
-        if (parseInt(porcentagemNivel.value) === 0) {
-            nivelContador = false;
-            console.log("zerando");
-        }
+    imagemNivel.forEach((imagemNivel) => {
+        erroContador = testandoURL(imagemNivel.value);
     });
 
     tituloNivel.forEach((tituloNivel) => {
         if (tituloNivel.value.length < 10 || tituloNivel.value === "") {
             erroContador = true;
-        } else { erroContador = false }
+        }
     });
 
-    imagemNivel.forEach((imagemNivel) => {
-        erroContador = testandoURL(imagemNivel.value);
+    porcentagemNivel.forEach((porcentagemNivel) => {
+        if (porcentagemNivel.value > 100 || porcentagemNivel.value === '' || porcentagemNivel.value < 0) {
+            erroContador = true;
+        }
+
+        const parseIntPorcentagem = parseInt(porcentagemNivel.value);
+
+        if (parseIntPorcentagem * 1 !== parseIntPorcentagem) {
+            erroContador = true;
+        }
+
+        if (parseInt(porcentagemNivel.value) === 0) {
+            nivelContador = false;
+        }
     });
 
     descricaoNivel.forEach((descricaoNivel) => {
         if (descricaoNivel.value.length < 30 || descricaoNivel.value === "") {
             erroContador = true;
-            console.log("Erro na Descricao");
-        } else { erroContador = false }
+        }
     });
 
-    console.log(erroContador);
-
     return (erroContador || nivelContador);
-
 }
 
 function testandoURL(urlFornecida) {
@@ -375,7 +348,6 @@ function testandoURL(urlFornecida) {
     let url = urlFornecida;
 
     if (!(url.match(regExp))) {
-        console.log("erro na Imagem");
         return true;
     } else {
         return false;
@@ -401,7 +373,6 @@ function mostrarTela3_4() {
 function postArrayCompleto(arrayCompleto) {
     const promise = axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", arrayCompleto);
     promise.then((response) => {
-        console.log(response);
         idNovoQuizz = response.data.id;
         addIDLocalStorage(idNovoQuizz);
     });
@@ -409,8 +380,6 @@ function postArrayCompleto(arrayCompleto) {
 }
 
 function editarPerguntas(este, tela) {
-    console.log(este.parentNode.parentNode);
-
     if (tela == 2) {
         const querySelectorResposasTela3 = este.parentNode.parentNode.querySelector(`.resposta-tela3`);
         querySelectorResposasTela3.classList.remove("escondido");
@@ -443,15 +412,10 @@ function reiniciarQuizz(idQuizz) {
     mostrarQuizTela2(idQuizz);
 }
 
-
-//function addIDLocalStorage(id)  --> Quando for der o POST e retornar um ID. Utilizar essa função
-// para jogar o ID no LocalStorage.
-
 // Listagem dos Quizzes
 function listagemQuizzes() {
     const promise = axios.get('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes');
     promise.then((quizzes) => {
-        console.log(quizzes);
         document.querySelector('.todos-quizzes').innerHTML = "<h1>Todos os Quizzes</h1>";
         document.querySelector('.seus-quizzes-imagens').innerHTML = "";
         atualizaEVerificaLocalStorage();
@@ -580,23 +544,21 @@ function selecionarRespostas(elemento) {
         contadorCorretas++;
     }
 
-    const quantidadePerguntasQuizz = document.querySelectorAll(".tela-2-container-pergunta");
-
-    porcentagemBruta = (contadorCorretas / quantidadePerguntasQuizz.length) * 100;
-
-    console.log(contadorCorretas);
-    console.log(contatorDeRespondidas);
-    console.log(porcentagemBruta);
-
-    if (contatorDeRespondidas === quantidadePerguntasQuizz.length) {
-        setTimeout(finalizarQuizz(porcentagemBruta), 2000);
-    }
     setTimeout(escrolar, 2000);
 }
 
 function escrolar() {
     const counteinerSelecionado = document.querySelectorAll(".tela-2-container-pergunta");
     const telaResultado = document.querySelector(".tela-2-resultados");
+
+    const quantidadePerguntasQuizz = document.querySelectorAll(".tela-2-container-pergunta");
+
+    porcentagemBruta = (contadorCorretas / quantidadePerguntasQuizz.length) * 100;
+
+    if (contatorDeRespondidas === quantidadePerguntasQuizz.length) {
+        finalizarQuizz(porcentagemBruta);
+    }
+
 
     if (indiceEscrolar === counteinerSelecionado.length) {
         telaResultado.scrollIntoView(false)
@@ -609,8 +571,8 @@ function escrolar() {
     }
 
 }
-// Function que trabalhara com o Local Storage
 
+// Function que trabalhara com o Local Storage
 function atualizaEVerificaLocalStorage() {
     let dadosLocalStorage = localStorage.getItem("ids");
     if (dadosLocalStorage != null) {
@@ -745,7 +707,6 @@ function imprimirResultados(indice, porcentagem) {
     let tituloResultado = arrayNiveisQuizzSelecionado[indice].title;
     let imgResultado = arrayNiveisQuizzSelecionado[indice].image;
     let textResultado = arrayNiveisQuizzSelecionado[indice].text;
-    console.log(tituloResultado);
 
     document.querySelector(".tela-2-resultados .tela-2-container-pergunta-titulo").innerHTML = `<h2>${porcentagem}% de acerto: ${tituloResultado}`
     document.querySelector(".tela-2-resultado-container").innerHTML = `
@@ -756,5 +717,3 @@ function imprimirResultados(indice, porcentagem) {
 
 // Funçoes para listar os Quizzes
 listagemQuizzes();
-
-//USAR QUERY SELECTORALL COM O .LENGTH PARA PEGAR A QUANTIDADE DE PERGUNTAS
