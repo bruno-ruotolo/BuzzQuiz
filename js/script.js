@@ -63,13 +63,14 @@ function criarQuizzTela3_1_Validacoes() {
     inputVazio.forEach((inputVazio) => {
         if (inputVazio.value === "") {
             erroContador = true;
+            console.log("Erro em todos Inputs")
         } else {
             if (tituloPerguntaValue.length < 20 || tituloPerguntaValue.length > 65) {
                 erroContador = true;
-            } else if (quantidadePerguntaValue < 3 || quantidadePerguntaValue === '') { //Voltar para <3
+            } else if (quantidadePerguntaValue < 3) { //Voltar para <3
                 erroContador = true;
                 console.log("Teste Quantidade");
-            } else if (quantidadeNiveisPerguntaValue < 2 || quantidadeNiveisPerguntaValue === '') { //Voltar para < 2
+            } else if (quantidadeNiveisPerguntaValue < 2) { //Voltar para < 2
                 erroContador = true;
                 console.log("Teste Nivel");
 
