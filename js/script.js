@@ -435,12 +435,12 @@ function voltarHome() {
     listagemQuizzes();
 }
 
-function reiniciarQuizz() {
+function reiniciarQuizz(idQuizz) {
     const topoDaTela = document.querySelector('.tela-2-container-titulo');
     const resultadosDoQuizz = document.querySelector('.tela-2-resultados');
     topoDaTela.scrollIntoView();
     resultadosDoQuizz.classList.add("escondido");
-    //Falta zerar as respostas q devem retornar pro estado inicial
+    mostrarQuizTela2(idQuizz);
 }
 
 
@@ -507,8 +507,10 @@ function mostrarQuizzesTela1(quizz) {
 function mostrarQuizTela2(idQuizz) {
     tela1.classList.add("escondido");
     tela2.classList.remove("escondido");
+    document.querySelector(".tela-2-resultados").classList.add("escondido");
     let telaPerguntas = document.querySelector('.tela-2-perguntas');
     telaPerguntas.innerHTML = "";
+    document.getElementById("buttonRestart").setAttribute("onclick", `reiniciarQuizz(${idQuizz})`);
     let tela2Titulo = document.querySelector('.tela-2-container-titulo');
     const promise = axios.get('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/' + idQuizz);
     promise.then((quizz) => {
@@ -520,6 +522,7 @@ function mostrarQuizTela2(idQuizz) {
         let questoesQuizzEmbaralhadas = quizz.data.questions.sort(embaralharArray);
         questoesQuizzEmbaralhadas.forEach(imprimeQuestoes);
         arrayNiveisQuizzSelecionado = quizz.data.levels;
+
     }
     );
     promise.catch((erro) => {
@@ -582,7 +585,8 @@ function selecionarRespostas(elemento) {
     porcentagemBruta = (contadorCorretas / quantidadePerguntasQuizz.length) * 100;
 
     console.log(contadorCorretas);
-    console.log(porcentagemBruta)
+    console.log(contatorDeRespondidas);
+    console.log(porcentagemBruta);
 
     if (contatorDeRespondidas === quantidadePerguntasQuizz.length) {
         finalizarQuizz(porcentagemBruta);
@@ -737,11 +741,13 @@ function finalizarQuizz(porcentagemRespostasCertas) {
 }
 
 function imprimirResultados(indice, porcentagem) {
+    document.querySelector(".tela-2-resultados").classList.remove("escondido");
     let tituloResultado = arrayNiveisQuizzSelecionado[indice].title;
     let imgResultado = arrayNiveisQuizzSelecionado[indice].image;
     let textResultado = arrayNiveisQuizzSelecionado[indice].text;
+    console.log(tituloResultado);
 
-    document.querySelector(".tela-2-container-pergunta-titulo").innerHTML = `<h2>${porcentagem}% de acerto: ${tituloResultado}`
+    document.querySelector(".tela-2-resultados .tela-2-container-pergunta-titulo").innerHTML = `<h2>${porcentagem}% de acerto: ${tituloResultado}`
     document.querySelector(".tela-2-resultado-container").innerHTML = `
     <img src="${imgResultado}" alt="Dumbledore">
     <p>${textResultado}</p>
