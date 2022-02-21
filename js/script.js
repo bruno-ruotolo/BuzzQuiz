@@ -689,19 +689,10 @@ function imprimirResultados(indice, porcentagem) {
     let textResultado = arrayNiveisQuizzSelecionado[indice].text;
 
     document.querySelector(".tela-2-container-pergunta-titulo").innerHTML = `<h2>${porcentagem}% de acerto: ${tituloResultado}`
-
-
-    /* <div class="tela-2-resultados">
-        <div class="tela-2-container-pergunta-titulo">
-            <h2>88% de acerto: Você é praticamente um aluno de Hogwarts!</h2>
-        </div>
-        <div class="tela-2-resultado-container">
-            <img src="img/hogwarts.png" alt="Dumbledore">
-            <p>Parabéns Potterhead! Bem-vindx a Hogwarts, aproveite o loop infinito de comida e clique no
-                botão
-                abaixo para usar o vira-tempo e reiniciar este teste.</p>
-        </div>
-    </div> */
+    document.querySelector(".tela-2-resultado-container").innerHTML = `
+    <img src="${imgResultado}" alt="Dumbledore">
+    <p>${textResultado}</p>
+    `
 }
 
 // Funçoes para listar os Quizzes
