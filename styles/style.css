@@ -446,6 +446,17 @@ h4 {
     color: #818181;
 }
 
+.esbranquicar {
+    filter: opacity(0.3);
+}
+
+.corTextoVerde {
+    color: #009C22;
+}
+
+.corTextoVermelho {
+    color: #FF4B4B;
+}
 
 /* css escondido */
 .escondido {

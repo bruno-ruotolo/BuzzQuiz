@@ -536,9 +536,9 @@ function imprimeQuestoes(questoes) {
     let respostasQuizzEmbaralhadas = questoes.answers.sort(embaralharArray);
     respostasQuizzEmbaralhadas.forEach((resposta) => {
         questaoTexto += `
-        <div class = "${resposta.isCorrectAnswer}">
+        <div class = "${resposta.isCorrectAnswer}" onclick = "selecionarRespostas(this)">
             <img src="${resposta.image}">
-            <p>${resposta.text}</p>
+            <p class="textoResposta" >${resposta.text}</p>
         </div>
         `;
     });
@@ -546,6 +546,40 @@ function imprimeQuestoes(questoes) {
     telaPerguntas.innerHTML += questaoTexto;
 }
 
+function selecionarRespostas(elemento) {
+    const imgTelaSelecionada = elemento.parentNode.querySelectorAll("div");
+
+    imgTelaSelecionada.forEach((imgTelaSelecionada) => {
+        imgTelaSelecionada.classList.add("esbranquicar");
+        imgTelaSelecionada.removeAttribute("onclick");
+
+        if (imgTelaSelecionada.classList.contains('true')) {
+            imgTelaSelecionada.querySelector(".textoResposta").classList.add("corTextoVerde");
+        } else {
+            imgTelaSelecionada.querySelector(".textoResposta").classList.add("corTextoVermelho");
+        }
+
+    })
+    elemento.classList.remove("esbranquicar");
+    setTimeout(escrolar, 2000);
+
+}
+
+
+let indiceEscrolar = 1;
+function escrolar() {
+    const counteinerSelecionado = document.querySelectorAll(".tela-2-container-pergunta");
+    const telaResultado = document.querySelector(".tela-2-resultados");
+
+    if (indiceEscrolar === counteinerSelecionado.length) {
+        telaResultado.scrollIntoView(false)
+        indiceEscrolar = 1;
+    } else {
+        counteinerSelecionado[indiceEscrolar].scrollIntoView(false);
+        indiceEscrolar++;
+    }
+
+}
 // Function que trabalhara com o Local Storage
 
 function atualizaEVerificaLocalStorage() {
@@ -659,3 +693,5 @@ function imprimirResultados(indice) {
 
 // Funçoes para listar os Quizzes
 listagemQuizzes();
+
+//USAR QUERY SELECTORALL COM O .LENGTH PARA PEGAR A QUANTIDADE DE PERGUNTAS
