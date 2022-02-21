@@ -256,6 +256,9 @@ h1 {
     align-items: center;
     margin: 0 auto;
     border: none;
+    color: #FFF5F4;
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
 }
 
 .tela-2-resultados-e-fim-do-quizz p {
