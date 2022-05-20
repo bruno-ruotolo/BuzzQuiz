@@ -1,8 +1,10 @@
 # BuzzQuiz
 A entertainment quizzes website, using a Public API.
 
-<img src="/assets/BuzzQuiz.png" />
-<img src="/assets/BuzzQuiz2.png" />
+<div>
+  <img src="/assets/BuzzQuiz.png" />
+  <img src="/assets/BuzzQuiz2.png" />
+</div>
 
 Try it out at https://bruno-ruotolo.github.io/BuzzQuiz/
 
